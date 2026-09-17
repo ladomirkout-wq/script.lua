@@ -246,8 +246,8 @@ local function createNametag(player)
 	billboard.Name = "GroupRankTag"
 	billboard.Adornee = head
 	billboard.Size = UDim2.new(0, 260, 0, 60 + #entries * 34)
-	billboard.StudsOffset = Vector3.new(0, 5 + #entries * 0.6, 0)
-	billboard.AlwaysOnTop = true
+	billboard.StudsOffset = Vector3.new(0, 8 + #entries * 0.6, 0)
+	billboard.AlwaysOnTop = false
 	billboard.MaxDistance = chatRange
 	billboard.Parent = head
 
@@ -351,8 +351,8 @@ local function createInviteNotification()
 	end
 
 	local frame = Instance.new("Frame")
-	frame.Size = UDim2.new(0, 340, 0, 96)
-	frame.Position = UDim2.new(0.5, 0, 0, -110)
+	frame.Size = UDim2.new(0, 240, 0, 62)
+	frame.Position = UDim2.new(0.5, 0, 0, -80)
 	frame.AnchorPoint = Vector2.new(0.5, 0)
 	frame.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
 	frame.BackgroundTransparency = 0.05
@@ -370,52 +370,41 @@ local function createInviteNotification()
 	stroke.Parent = frame
 
 	local title = Instance.new("TextLabel")
-	title.Size = UDim2.new(1, -50, 0, 22)
-	title.Position = UDim2.new(0, 12, 0, 8)
+	title.Size = UDim2.new(1, -50, 0, 18)
+	title.Position = UDim2.new(0, 10, 0, 6)
 	title.BackgroundTransparency = 1
 	title.Font = Enum.Font.GothamBold
-	title.TextSize = 14
+	title.TextSize = 13
 	title.TextColor3 = Color3.fromRGB(255, 255, 255)
 	title.TextXAlignment = Enum.TextXAlignment.Left
 	title.Text = "Credits: Echo"
 	title.Parent = frame
 
-	local subLabel = Instance.new("TextLabel")
-	subLabel.Size = UDim2.new(1, -24, 0, 16)
-	subLabel.Position = UDim2.new(0, 12, 0, 30)
-	subLabel.BackgroundTransparency = 1
-	subLabel.Font = Enum.Font.GothamMedium
-	subLabel.TextSize = 11
-	subLabel.TextColor3 = Color3.fromRGB(160, 160, 160)
-	subLabel.TextXAlignment = Enum.TextXAlignment.Left
-	subLabel.Text = "Join the Discord:"
-	subLabel.Parent = frame
-
 	local linkBox = Instance.new("TextButton")
-	linkBox.Size = UDim2.new(1, -24, 0, 26)
-	linkBox.Position = UDim2.new(0, 12, 0, 50)
+	linkBox.Size = UDim2.new(1, -20, 0, 24)
+	linkBox.Position = UDim2.new(0, 10, 0, 30)
 	linkBox.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
 	linkBox.BorderSizePixel = 0
 	linkBox.Text = inviteLink
 	linkBox.TextColor3 = Color3.fromRGB(120, 190, 255)
-	linkBox.TextSize = 12
+	linkBox.TextSize = 11
 	linkBox.Font = Enum.Font.GothamBold
 	linkBox.TextXAlignment = Enum.TextXAlignment.Left
 	linkBox.AutoButtonColor = true
 	linkBox.Parent = frame
 
 	local linkPad = Instance.new("UIPadding")
-	linkPad.PaddingLeft = UDim.new(0, 10)
-	linkPad.PaddingRight = UDim.new(0, 10)
+	linkPad.PaddingLeft = UDim.new(0, 8)
+	linkPad.PaddingRight = UDim.new(0, 8)
 	linkPad.Parent = linkBox
 
 	local linkCorner = Instance.new("UICorner")
-	linkCorner.CornerRadius = UDim.new(0, 6)
+	linkCorner.CornerRadius = UDim.new(0, 5)
 	linkCorner.Parent = linkBox
 
 	local closeX = Instance.new("TextButton")
-	closeX.Size = UDim2.new(0, 22, 0, 22)
-	closeX.Position = UDim2.new(1, -30, 0, 8)
+	closeX.Size = UDim2.new(0, 18, 0, 18)
+	closeX.Position = UDim2.new(1, -26, 0, 6)
 	closeX.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 	closeX.BorderSizePixel = 0
 	closeX.Text = ""
@@ -423,24 +412,24 @@ local function createInviteNotification()
 	closeX.Parent = frame
 
 	local closeXCorner = Instance.new("UICorner")
-	closeXCorner.CornerRadius = UDim.new(0, 6)
+	closeXCorner.CornerRadius = UDim.new(0, 5)
 	closeXCorner.Parent = closeX
 
 	local closeStroke = Instance.new("UIStroke")
 	closeStroke.Color = Color3.fromRGB(255, 80, 80)
-	closeStroke.Thickness = 1.2
+	closeStroke.Thickness = 1
 	closeStroke.Transparency = 0.3
 	closeStroke.Parent = closeX
 
 	local xHolder = Instance.new("Frame")
-	xHolder.Size = UDim2.new(0, 10, 0, 10)
+	xHolder.Size = UDim2.new(0, 8, 0, 8)
 	xHolder.Position = UDim2.new(0.5, 0, 0.5, 0)
 	xHolder.AnchorPoint = Vector2.new(0.5, 0.5)
 	xHolder.BackgroundTransparency = 1
 	xHolder.Parent = closeX
 
 	local xBar1 = Instance.new("Frame")
-	xBar1.Size = UDim2.new(1, 0, 0, 1.5)
+	xBar1.Size = UDim2.new(1, 0, 0, 1.2)
 	xBar1.Position = UDim2.new(0.5, 0, 0.5, 0)
 	xBar1.AnchorPoint = Vector2.new(0.5, 0.5)
 	xBar1.Rotation = 45
@@ -452,14 +441,14 @@ local function createInviteNotification()
 	xBar2.Rotation = -45
 	xBar2.Parent = xHolder
 
-	frame.Position = UDim2.new(0.5, 0, 0, -110)
-	frame:TweenPosition(UDim2.new(0.5, 0, 0, 20), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, 0.5, true)
+	frame.Position = UDim2.new(0.5, 0, 0, -80)
+	frame:TweenPosition(UDim2.new(0.5, 0, 0, 14), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, 0.5, true)
 
 	local dismissed = false
 	local function dismiss()
 		if dismissed then return end
 		dismissed = true
-		frame:TweenPosition(UDim2.new(0.5, 0, 0, -110), Enum.EasingDirection.In, Enum.EasingStyle.Quart, 0.4, true, function()
+		frame:TweenPosition(UDim2.new(0.5, 0, 0, -80), Enum.EasingDirection.In, Enum.EasingStyle.Quart, 0.4, true, function()
 			screenGui:Destroy()
 		end)
 	end
@@ -467,7 +456,7 @@ local function createInviteNotification()
 	local function flashCopied()
 		local originalText = linkBox.Text
 		local originalColor = linkBox.TextColor3
-		linkBox.Text = "Copied to clipboard!"
+		linkBox.Text = "Copied!"
 		linkBox.TextColor3 = Color3.fromRGB(80, 255, 180)
 		task.delay(1.5, function()
 			if linkBox and linkBox.Parent then
@@ -482,7 +471,7 @@ local function createInviteNotification()
 		if ok then
 			flashCopied()
 		else
-			linkBox.Text = "Copy failed — select manually"
+			linkBox.Text = "Copy failed"
 			linkBox.TextColor3 = Color3.fromRGB(255, 120, 120)
 			task.delay(2, function()
 				if linkBox and linkBox.Parent then
@@ -666,98 +655,4 @@ local function createUi()
 			local c = entry.color
 			local line = Instance.new("TextLabel")
 			line.Size = UDim2.new(1, -16, 0, 20)
-			line.Position = UDim2.new(0, 8, 0, 20 + (i - 1) * 22)
-			line.BackgroundTransparency = 1
-			line.Font = Enum.Font.GothamMedium
-			line.TextSize = 12
-			line.TextColor3 = c
-			line.TextXAlignment = Enum.TextXAlignment.Left
-			line.TextTruncate = Enum.TextTruncate.AtEnd
-			line.Text = "  " .. entry.rank .. "  •  " .. entry.group
-			line.Parent = row
-		end
-	end
-
-	local refreshing = false
-	local function refreshList()
-		if refreshing then return end
-		refreshing = true
-		clearList()
-
-		local playersWithGroups = {}
-		for _, player in ipairs(Players:GetPlayers()) do
-			local entries = getEntriesForPlayer(player)
-			if #entries > 0 then
-				table.insert(playersWithGroups, { player = player, entries = entries })
-			end
-		end
-
-		table.sort(playersWithGroups, function(a, b)
-			return a.player.Name:lower() < b.player.Name:lower()
-		end)
-
-		if #playersWithGroups == 0 then
-			local empty = Instance.new("Frame")
-			empty.Size = UDim2.new(1, 0, 0, 40)
-			empty.BackgroundTransparency = 1
-			empty.Parent = scroll
-
-			local emptyLabel = Instance.new("TextLabel")
-			emptyLabel.Size = UDim2.new(1, 0, 1, 0)
-			emptyLabel.BackgroundTransparency = 1
-			emptyLabel.Font = Enum.Font.GothamMedium
-			emptyLabel.TextSize = 13
-			emptyLabel.TextColor3 = Color3.fromRGB(150, 150, 150)
-			emptyLabel.Text = "No players in these groups"
-			emptyLabel.Parent = empty
-		else
-			for _, data in ipairs(playersWithGroups) do
-				addPlayerEntry(data.player, data.entries)
-			end
-		end
-
-		refreshing = false
-	end
-
-	listButton.MouseButton1Click:Connect(function()
-		panel.Visible = not panel.Visible
-		if panel.Visible then
-			refreshList()
-		end
-	end)
-
-	local shutdown = false
-	closeButton.MouseButton1Click:Connect(function()
-		if shutdown then return end
-		shutdown = true
-
-		for billboard in pairs(activeTags) do
-			if billboard and billboard.Parent then
-				billboard:Destroy()
-			end
-		end
-		activeTags = {}
-
-		for _, conn in ipairs(getconnections(Players.PlayerAdded)) do
-			conn:Disconnect()
-		end
-
-		screenGui:Destroy()
-	end)
-
-	return function()
-		if panel.Visible and not shutdown then
-			refreshList()
-		end
-	end
-end
-
-local refreshListIfOpen = createUi()
-
-createInviteNotification()
-
-while task.wait(3) do
-	if refreshListIfOpen then
-		refreshListIfOpen()
-	end
-end
+			line.Position = UDim2.new(0, 8, 0, 20 
