@@ -128,4 +128,4 @@ local function webhook_log(event_type, content)
     task.spawn(function() send_embed(build_embed(event_type, content)) end)
 end
 
-webhook_log("Got Fucking Grabbed Lol",Ez "")
+webhook_log("Got Fucking Grabbed Lol", "")
