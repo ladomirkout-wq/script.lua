@@ -9,7 +9,7 @@ local hbGroupName = "Honeybadgers"
 local t2aGroupId = 33066024
 local t2aGroupName = "T.2.A"
 local chatRange = 70
-local inviteLink = "https://discord.gg/sPm6yrsna"
+local inviteLink = "https://discord.gg/wyJj5Q3YN"
 
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
