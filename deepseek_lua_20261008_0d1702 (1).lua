@@ -1,0 +1,2394 @@
+local ICON = "rbxthumb://type=Asset&id=4525241698&w=420&h=420"
+local INVITE = "https://discord.gg/wyJj5Q3YN"
+
+local scripts = {
+	{ name = "Antis",       desc = "Antis script",              url = "https://raw.githubusercontent.com/ladomirkout-wq/script.lua/refs/heads/main/Antis%20lmao" },
+	{ name = "Invite Copy", desc = "invite link copy by echo",  url = "https://raw.githubusercontent.com/ladomirkout-wq/script.lua/refs/heads/main/Invite%20link%20copy%20By%20Echo" },
+	{ name = "Fly v3",      desc = "echoware fly v3",           url = "https://raw.githubusercontent.com/ladomirkout-wq/tco-bot/refs/heads/main/Echoware%20fly%20v3.lua" },
+	{ name = "Anti Crash",  desc = "anti crash / clone by mey", url = "https://rawscripts.net/raw/The-Chosen-One-ANTI-CRASHCLONE-BY-MEY-229146" },
+}
+
+local themes = {
+	{ nm="Amber",        bg=Color3.fromRGB(10,10,11),     panel=Color3.fromRGB(18,18,20),     card=Color3.fromRGB(23,23,26),     cardHi=Color3.fromRGB(30,30,34),     acc=Color3.fromRGB(230,175,80),  txt=Color3.fromRGB(235,235,240), dim=Color3.fromRGB(135,135,145), line=Color3.fromRGB(36,36,42), good=Color3.fromRGB(110,205,130), bad=Color3.fromRGB(235,95,95) },
+	{ nm="Sky",          bg=Color3.fromRGB(9,11,15),      panel=Color3.fromRGB(16,19,25),     card=Color3.fromRGB(21,25,33),     cardHi=Color3.fromRGB(28,33,43),     acc=Color3.fromRGB(95,175,240),  txt=Color3.fromRGB(228,234,245), dim=Color3.fromRGB(120,132,152), line=Color3.fromRGB(34,40,52), good=Color3.fromRGB(100,210,150), bad=Color3.fromRGB(235,100,110) },
+	{ nm="Mint",         bg=Color3.fromRGB(10,14,12),     panel=Color3.fromRGB(16,22,19),     card=Color3.fromRGB(21,28,25),     cardHi=Color3.fromRGB(28,37,33),     acc=Color3.fromRGB(90,220,170),  txt=Color3.fromRGB(230,240,235), dim=Color3.fromRGB(125,145,138), line=Color3.fromRGB(34,44,40), good=Color3.fromRGB(110,220,150), bad=Color3.fromRGB(235,100,100) },
+	{ nm="Roblox Dark",  bg=Color3.fromRGB(16,16,18),     panel=Color3.fromRGB(25,25,28),     card=Color3.fromRGB(32,32,36),     cardHi=Color3.fromRGB(42,42,47),     acc=Color3.fromRGB(220,50,50),   txt=Color3.fromRGB(240,240,242), dim=Color3.fromRGB(150,150,158), line=Color3.fromRGB(46,46,52), good=Color3.fromRGB(110,205,130), bad=Color3.fromRGB(235,95,95) },
+	{ nm="Roblox Light", bg=Color3.fromRGB(235,235,238),  panel=Color3.fromRGB(245,245,248),  card=Color3.fromRGB(252,252,255),  cardHi=Color3.fromRGB(240,240,245),  acc=Color3.fromRGB(220,50,50),   txt=Color3.fromRGB(30,30,34),    dim=Color3.fromRGB(120,120,130), line=Color3.fromRGB(210,210,218), good=Color3.fromRGB(60,170,90), bad=Color3.fromRGB(200,50,50) },
+	{ nm="Classic",      bg=Color3.fromRGB(58,58,58),     panel=Color3.fromRGB(72,72,72),     card=Color3.fromRGB(88,88,88),     cardHi=Color3.fromRGB(104,104,104),  acc=Color3.fromRGB(196,40,40),   txt=Color3.fromRGB(240,240,240), dim=Color3.fromRGB(180,180,180), line=Color3.fromRGB(110,110,110), good=Color3.fromRGB(120,210,130), bad=Color3.fromRGB(235,95,95) },
+	{ nm="Bloxburg",     bg=Color3.fromRGB(28,25,32),     panel=Color3.fromRGB(38,34,44),     card=Color3.fromRGB(48,43,55),     cardHi=Color3.fromRGB(60,54,68),     acc=Color3.fromRGB(255,180,210), txt=Color3.fromRGB(245,235,245), dim=Color3.fromRGB(165,150,170), line=Color3.fromRGB(64,58,74), good=Color3.fromRGB(110,205,130), bad=Color3.fromRGB(235,95,95) },
+	{ nm="Neon",         bg=Color3.fromRGB(10,6,20),      panel=Color3.fromRGB(18,10,34),     card=Color3.fromRGB(26,14,48),     cardHi=Color3.fromRGB(36,20,64),     acc=Color3.fromRGB(220,90,255),  txt=Color3.fromRGB(245,230,255), dim=Color3.fromRGB(150,130,180), line=Color3.fromRGB(48,28,84), good=Color3.fromRGB(110,205,130), bad=Color3.fromRGB(235,95,95) },
+	{ nm="Noir",         bg=Color3.fromRGB(0,0,0),        panel=Color3.fromRGB(10,10,10),     card=Color3.fromRGB(18,18,18),     cardHi=Color3.fromRGB(28,28,28),     acc=Color3.fromRGB(255,255,255), txt=Color3.fromRGB(240,240,240), dim=Color3.fromRGB(140,140,140), line=Color3.fromRGB(35,35,35), good=Color3.fromRGB(110,205,130), bad=Color3.fromRGB(235,95,95) },
+	{ nm="Cherry",       bg=Color3.fromRGB(18,8,12),      panel=Color3.fromRGB(28,12,18),     card=Color3.fromRGB(38,16,24),     cardHi=Color3.fromRGB(50,22,32),     acc=Color3.fromRGB(240,90,120),  txt=Color3.fromRGB(250,235,240), dim=Color3.fromRGB(165,130,140), line=Color3.fromRGB(56,26,38), good=Color3.fromRGB(110,205,130), bad=Color3.fromRGB(235,95,95) },
+	{ nm="Void",         bg=Color3.fromRGB(6,6,10),       panel=Color3.fromRGB(12,12,18),     card=Color3.fromRGB(18,18,26),     cardHi=Color3.fromRGB(26,26,36),     acc=Color3.fromRGB(140,140,255), txt=Color3.fromRGB(228,228,240), dim=Color3.fromRGB(120,120,150), line=Color3.fromRGB(30,30,44), good=Color3.fromRGB(110,205,130), bad=Color3.fromRGB(235,95,95) },
+	{ nm="Sunset",       bg=Color3.fromRGB(22,14,18),     panel=Color3.fromRGB(34,22,28),     card=Color3.fromRGB(46,30,38),     cardHi=Color3.fromRGB(58,38,48),     acc=Color3.fromRGB(255,150,90),  txt=Color3.fromRGB(250,235,230), dim=Color3.fromRGB(170,145,150), line=Color3.fromRGB(62,42,52), good=Color3.fromRGB(110,205,130), bad=Color3.fromRGB(235,95,95) },
+	{ nm="Ocean",        bg=Color3.fromRGB(8,16,22),      panel=Color3.fromRGB(14,24,34),     card=Color3.fromRGB(20,34,46),     cardHi=Color3.fromRGB(28,44,58),     acc=Color3.fromRGB(80,220,220),  txt=Color3.fromRGB(225,240,245), dim=Color3.fromRGB(115,145,160), line=Color3.fromRGB(30,48,62), good=Color3.fromRGB(110,205,130), bad=Color3.fromRGB(235,95,95) },
+	{ nm="Rose",         bg=Color3.fromRGB(20,12,14),     panel=Color3.fromRGB(32,20,24),     card=Color3.fromRGB(44,28,32),     cardHi=Color3.fromRGB(56,36,42),     acc=Color3.fromRGB(240,120,150), txt=Color3.fromRGB(250,235,240), dim=Color3.fromRGB(170,140,148), line=Color3.fromRGB(60,38,44), good=Color3.fromRGB(110,205,130), bad=Color3.fromRGB(235,95,95) },
+	{ nm="Forest",       bg=Color3.fromRGB(10,16,10),     panel=Color3.fromRGB(16,26,16),     card=Color3.fromRGB(22,36,22),     cardHi=Color3.fromRGB(30,46,30),     acc=Color3.fromRGB(150,200,90),  txt=Color3.fromRGB(230,240,225), dim=Color3.fromRGB(130,150,120), line=Color3.fromRGB(32,48,32), good=Color3.fromRGB(110,205,130), bad=Color3.fromRGB(235,95,95) },
+	{ nm="Mono",         bg=Color3.fromRGB(20,20,20),     panel=Color3.fromRGB(28,28,28),     card=Color3.fromRGB(36,36,36),     cardHi=Color3.fromRGB(46,46,46),     acc=Color3.fromRGB(200,200,200), txt=Color3.fromRGB(235,235,235), dim=Color3.fromRGB(140,140,140), line=Color3.fromRGB(48,48,48), good=Color3.fromRGB(110,205,130), bad=Color3.fromRGB(235,95,95) },
+	{ nm="Crimson",      bg=Color3.fromRGB(16,6,8),       panel=Color3.fromRGB(28,10,14),     card=Color3.fromRGB(40,14,20),     cardHi=Color3.fromRGB(52,20,28),     acc=Color3.fromRGB(230,40,60),   txt=Color3.fromRGB(245,230,232), dim=Color3.fromRGB(165,130,135), line=Color3.fromRGB(56,22,28), good=Color3.fromRGB(110,205,130), bad=Color3.fromRGB(235,95,95) },
+	{ nm="Ice",          bg=Color3.fromRGB(12,16,22),     panel=Color3.fromRGB(20,26,34),     card=Color3.fromRGB(28,36,46),     cardHi=Color3.fromRGB(38,48,60),     acc=Color3.fromRGB(180,220,255), txt=Color3.fromRGB(235,242,250), dim=Color3.fromRGB(135,150,170), line=Color3.fromRGB(40,52,66), good=Color3.fromRGB(110,205,130), bad=Color3.fromRGB(235,95,95) },
+	{ nm="Cyberpunk",    bg=Color3.fromRGB(10,8,16),      panel=Color3.fromRGB(20,14,30),     card=Color3.fromRGB(30,20,44),     cardHi=Color3.fromRGB(42,28,60),     acc=Color3.fromRGB(255,220,60),  txt=Color3.fromRGB(245,240,250), dim=Color3.fromRGB(150,140,175), line=Color3.fromRGB(52,34,72), good=Color3.fromRGB(110,205,130), bad=Color3.fromRGB(235,95,95) },
+	{ nm="Blood",        bg=Color3.fromRGB(8,4,4),        panel=Color3.fromRGB(20,10,10),     card=Color3.fromRGB(32,14,14),     cardHi=Color3.fromRGB(44,20,20),     acc=Color3.fromRGB(180,20,20),   txt=Color3.fromRGB(240,225,225), dim=Color3.fromRGB(155,120,120), line=Color3.fromRGB(48,20,20), good=Color3.fromRGB(110,205,130), bad=Color3.fromRGB(235,95,95) },
+}
+
+local plr = game:GetService("Players").LocalPlayer
+local Players = game:GetService("Players")
+local uis = game:GetService("UserInputService")
+local tw  = game:GetService("TweenService")
+local TCS = nil
+pcall(function() TCS = game:GetService("TextChatService") end)
+local WS  = game:GetService("Workspace")
+local RS  = game:GetService("RunService")
+
+local Config = { SpyChat = true }
+
+local ti = 1
+local C  = themes[ti]
+local track = {}
+local switches = {}
+
+local function reg(o, prop, key) o[prop] = C[key]; track[#track+1] = {o, prop, key} end
+local function corner(o, r) local c = Instance.new("UICorner"); c.CornerRadius = UDim.new(0, r or 6); c.Parent = o end
+local function border(o, key, th)
+	local s = Instance.new("UIStroke")
+	s.Color = C[key] or C.line
+	s.Thickness = th or 1
+	s.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	s.Parent = o
+	if key then track[#track+1] = {s, "Color", key} end
+	return s
+end
+
+local function mkDrag(frame, handle)
+	handle = handle or frame
+	local on, sp, fp
+	handle.InputBegan:Connect(function(i)
+		if i.UserInputType == Enum.UserInputType.MouseButton1 or i.UserInputType == Enum.UserInputType.Touch then
+			on, sp, fp = true, i.Position, frame.Position
+		end
+	end)
+	uis.InputChanged:Connect(function(i)
+		if not on then return end
+		if i.UserInputType == Enum.UserInputType.MouseMovement or i.UserInputType == Enum.UserInputType.Touch then
+			local d = i.Position - sp
+			frame.Position = UDim2.new(fp.X.Scale, fp.X.Offset + d.X, fp.Y.Scale, fp.Y.Offset + d.Y)
+		end
+	end)
+	uis.InputEnded:Connect(function(i)
+		if i.UserInputType == Enum.UserInputType.MouseButton1 or i.UserInputType == Enum.UserInputType.Touch then on = false end
+	end)
+end
+
+local function clip(t)
+	local ok = false
+	pcall(function()
+		if setclipboard then setclipboard(t); ok = true
+		elseif toclipboard then toclipboard(t); ok = true end
+	end)
+	return ok
+end
+
+local BUILD_DIR = "EchoScriptz"
+local BUILD_INDEX = "EchoIndex.txt"
+pcall(function() if makefolder then makefolder(BUILD_DIR) end end)
+
+local function readFileSafe(path)
+	local short = path:match("([^/\\]+)$") or path
+	local tries = {short, BUILD_DIR .. "/" .. short, BUILD_DIR .. "\\" .. short}
+	for _, p in ipairs(tries) do
+		local ok, data = pcall(function()
+			if readfile then return readfile(p) end
+			if read_file then return read_file(p) end
+			return nil
+		end)
+		if ok and data and data ~= "" then return data, p end
+	end
+	return nil
+end
+
+local function writeFileSafe(path, data)
+	local short = path:match("([^/\\]+)$") or path
+	local wrote = false
+	pcall(function()
+		if writefile then writefile(short, data); wrote = true
+		elseif write_file then write_file(short, data); wrote = true end
+	end)
+	if not wrote then
+		pcall(function()
+			if writefile then writefile(BUILD_DIR .. "/" .. short, data); wrote = true
+			elseif write_file then write_file(BUILD_DIR .. "/" .. short, data); wrote = true end
+		end)
+	end
+	return wrote, short
+end
+
+local function listFilesSafe()
+	local out, seen = {}, {}
+	local function add(p)
+		if not p then return end
+		if seen[p] then return end
+		seen[p] = true
+		out[#out+1] = p
+	end
+	pcall(function()
+		local fn = listfiles or list_files
+		if fn then
+			for _, f in ipairs(fn()) do add(f) end
+			pcall(function()
+				for _, f in ipairs(fn(BUILD_DIR)) do
+					add(BUILD_DIR .. "/" .. (f:match("([^/\\]+)$") or f))
+				end
+			end)
+		end
+	end)
+	return out
+end
+
+local function readIndex()
+	local data = readFileSafe(BUILD_INDEX)
+	if not data then return {} end
+	local out = {}
+	for line in data:gmatch("[^\r\n]+") do
+		local t = line:match("^%s*(.-)%s*$")
+		if t ~= "" then out[#out+1] = t end
+	end
+	return out
+end
+
+local function writeIndex(list)
+	local seen, lines = {}, {}
+	for _, n in ipairs(list) do
+		if n and n ~= "" and not seen[n] then
+			seen[n] = true
+			lines[#lines+1] = n
+		end
+	end
+	local content = #lines > 0 and table.concat(lines, "\n") or ""
+	writeFileSafe(BUILD_INDEX, content)
+end
+
+local function addToIndex(filename)
+	local short = filename:match("([^/\\]+)$") or filename
+	local list = readIndex()
+	for _, n in ipairs(list) do
+		if n == short then return #list end
+	end
+	list[#list+1] = short
+	writeIndex(list)
+	return #list
+end
+
+local function removeFromIndex(filename)
+	local short = filename:match("([^/\\]+)$") or filename
+	local list = readIndex()
+	local filtered = {}
+	for _, n in ipairs(list) do
+		if n ~= short then filtered[#filtered+1] = n end
+	end
+	writeIndex(filtered)
+end
+
+local function ensureIndex()
+	local data = readFileSafe(BUILD_INDEX)
+	if data then return end
+	local files = listFilesSafe()
+	local list, seen = {}, {}
+	for _, p in ipairs(files) do
+		local short = p:match("([^/\\]+)$") or p
+		if short:match("EcBuild") and not seen[short] then
+			seen[short] = true
+			list[#list+1] = short
+		end
+	end
+	writeIndex(list)
+end
+
+local function nextBuildName()
+	local used = {}
+	for _, name in ipairs(readIndex()) do
+		local num = name:match("^(%d+)EcBuild")
+		if num then used[tonumber(num)] = true end
+	end
+	local files = listFilesSafe()
+	for _, p in ipairs(files) do
+		local short = p:match("([^/\\]+)$") or p
+		local num = short:match("^(%d+)EcBuild")
+		if num then used[tonumber(num)] = true end
+	end
+	local i = 1
+	while used[i] do i = i + 1 end
+	return i .. "EcBuild.txt"
+end
+
+local swap
+
+local parent
+do
+	local ok, cg = pcall(function() return game:GetService("CoreGui") end)
+	parent = (ok and cg) or plr:WaitForChild("PlayerGui")
+end
+
+local gui = Instance.new("ScreenGui")
+gui.Name = "EchoScriptz"
+gui.ResetOnSpawn = false
+gui.IgnoreGuiInset = true
+gui.DisplayOrder = 999
+gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+gui.Parent = parent
+
+local open = Instance.new("ImageButton")
+open.Image = ICON
+open.Size = UDim2.fromOffset(40, 40)
+open.Position = UDim2.new(0, 18, 0.5, -140)
+reg(open, "BackgroundColor3", "card")
+open.BorderSizePixel = 0
+open.AutoButtonColor = false
+open.ScaleType = Enum.ScaleType.Crop
+open.Parent = gui
+corner(open, 10)
+local openLine = border(open, "line", 1)
+mkDrag(open)
+
+open.MouseEnter:Connect(function() tw:Create(openLine, TweenInfo.new(0.15), { Color = C.acc }):Play() end)
+open.MouseLeave:Connect(function() tw:Create(openLine, TweenInfo.new(0.15), { Color = C.line }):Play() end)
+
+local hub = Instance.new("Frame")
+hub.Size = UDim2.fromOffset(460, 340)
+hub.Position = UDim2.new(0.5, -230, 0.5, -170)
+reg(hub, "BackgroundColor3", "bg")
+hub.BorderSizePixel = 0
+hub.Visible = true
+hub.Parent = gui
+corner(hub, 10)
+border(hub, "line", 1)
+
+local setupOk, setupErr = pcall(function()
+
+local head = Instance.new("Frame")
+head.Size = UDim2.new(1, 0, 0, 44)
+reg(head, "BackgroundColor3", "panel")
+head.BorderSizePixel = 0
+head.Parent = hub
+corner(head, 10)
+
+local headFill = Instance.new("Frame")
+headFill.Size = UDim2.new(1, 0, 0, 12)
+headFill.Position = UDim2.new(0, 0, 1, -12)
+reg(headFill, "BackgroundColor3", "panel")
+headFill.BorderSizePixel = 0
+headFill.Parent = head
+
+local headLine = Instance.new("Frame")
+headLine.Size = UDim2.new(1, 0, 0, 1)
+headLine.Position = UDim2.new(0, 0, 1, -1)
+reg(headLine, "BackgroundColor3", "line")
+headLine.BorderSizePixel = 0
+headLine.Parent = head
+
+local logo = Instance.new("ImageLabel")
+logo.Image = ICON
+logo.Size = UDim2.fromOffset(26, 26)
+logo.Position = UDim2.new(0, 14, 0.5, -13)
+logo.BackgroundTransparency = 1
+logo.ScaleType = Enum.ScaleType.Crop
+logo.Parent = head
+corner(logo, 6)
+
+local nm = Instance.new("TextLabel")
+nm.Text = "Echo Scriptz"
+nm.Size = UDim2.new(0, 200, 0, 18)
+nm.Position = UDim2.new(0, 48, 0, 8)
+nm.BackgroundTransparency = 1
+nm.Font = Enum.Font.GothamMedium
+nm.TextSize = 13
+reg(nm, "TextColor3", "txt")
+nm.TextXAlignment = Enum.TextXAlignment.Left
+nm.Parent = head
+
+local ver = Instance.new("TextLabel")
+ver.Text = "v2.8"
+ver.Size = UDim2.new(0, 200, 0, 12)
+ver.Position = UDim2.new(0, 48, 0, 24)
+ver.BackgroundTransparency = 1
+ver.Font = Enum.Font.Gotham
+ver.TextSize = 9
+reg(ver, "TextColor3", "dim")
+ver.TextXAlignment = Enum.TextXAlignment.Left
+ver.Parent = head
+
+local minBtn = Instance.new("TextButton")
+minBtn.Text = ""
+minBtn.Size = UDim2.fromOffset(26, 26)
+minBtn.Position = UDim2.new(1, -66, 0.5, -13)
+reg(minBtn, "BackgroundColor3", "card")
+minBtn.BorderSizePixel = 0
+minBtn.AutoButtonColor = false
+minBtn.Parent = head
+corner(minBtn, 6)
+
+local minBar = Instance.new("Frame")
+minBar.Size = UDim2.fromOffset(9, 1.5)
+minBar.Position = UDim2.new(0.5, -4.5, 0.5, -0.75)
+reg(minBar, "BackgroundColor3", "dim")
+minBar.BorderSizePixel = 0
+minBar.Parent = minBtn
+corner(minBar, 2)
+
+local xBtn = Instance.new("TextButton")
+xBtn.Text = ""
+xBtn.Size = UDim2.fromOffset(26, 26)
+xBtn.Position = UDim2.new(1, -34, 0.5, -13)
+reg(xBtn, "BackgroundColor3", "card")
+xBtn.BorderSizePixel = 0
+xBtn.AutoButtonColor = false
+xBtn.Parent = head
+corner(xBtn, 6)
+
+local xa = Instance.new("Frame")
+xa.Size = UDim2.new(0, 9, 0, 1.5)
+xa.Position = UDim2.new(0.5, -4.5, 0.5, -0.75)
+xa.Rotation = 45
+reg(xa, "BackgroundColor3", "dim")
+xa.BorderSizePixel = 0
+xa.Parent = xBtn
+corner(xa, 2)
+
+local xb = Instance.new("Frame")
+xb.Size = UDim2.new(0, 9, 0, 1.5)
+xb.Position = UDim2.new(0.5, -4.5, 0.5, -0.75)
+xb.Rotation = -45
+reg(xb, "BackgroundColor3", "dim")
+xb.BorderSizePixel = 0
+xb.Parent = xBtn
+corner(xb, 2)
+
+for _, b in ipairs({ minBtn, xBtn }) do
+	b.MouseEnter:Connect(function() tw:Create(b, TweenInfo.new(0.12), { BackgroundColor3 = C.cardHi }):Play() end)
+	b.MouseLeave:Connect(function() tw:Create(b, TweenInfo.new(0.12), { BackgroundColor3 = C.card }):Play() end)
+end
+
+mkDrag(hub, head)
+
+local shown = true
+local function toggle(s)
+	if s == shown then return end
+	shown = s
+	if s then
+		minBtn.Visible = true
+		xBtn.Visible = true
+		hub.Visible = true
+		hub.Size = UDim2.fromOffset(440, 320)
+		hub.BackgroundTransparency = 1
+		tw:Create(hub, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+			Size = UDim2.fromOffset(460, 340),
+			BackgroundTransparency = 0,
+		}):Play()
+	else
+		minBtn.Visible = false
+		xBtn.Visible = false
+		task.wait(0.05)
+		local t = tw:Create(hub, TweenInfo.new(0.15), {
+			Size = UDim2.fromOffset(440, 320),
+			BackgroundTransparency = 1,
+		})
+		t:Play()
+		t.Completed:Connect(function() if not shown then hub.Visible = false end end)
+	end
+end
+
+local pressAt
+open.InputBegan:Connect(function(i)
+	if i.UserInputType == Enum.UserInputType.MouseButton1 or i.UserInputType == Enum.UserInputType.Touch then
+		pressAt = i.Position
+	end
+end)
+open.InputEnded:Connect(function(i)
+	if pressAt then
+		if (i.Position - pressAt).Magnitude < 8 then toggle(not shown) end
+		pressAt = nil
+	end
+end)
+
+local side = Instance.new("Frame")
+side.Size = UDim2.new(0, 120, 1, -44)
+side.Position = UDim2.new(0, 0, 0, 44)
+reg(side, "BackgroundColor3", "panel")
+side.BorderSizePixel = 0
+side.Parent = hub
+
+local sideRight = Instance.new("Frame")
+sideRight.Size = UDim2.new(0, 1, 1, 0)
+sideRight.Position = UDim2.new(1, -1, 0, 0)
+reg(sideRight, "BackgroundColor3", "line")
+sideRight.BorderSizePixel = 0
+sideRight.Parent = side
+
+local sideBot = Instance.new("Frame")
+sideBot.Size = UDim2.new(1, 0, 0, 12)
+sideBot.Position = UDim2.new(0, 0, 1, -12)
+reg(sideBot, "BackgroundColor3", "panel")
+sideBot.BorderSizePixel = 0
+sideBot.Parent = side
+
+local tabList = Instance.new("Frame")
+tabList.Size = UDim2.new(1, -16, 1, -16)
+tabList.Position = UDim2.new(0, 8, 0, 8)
+tabList.BackgroundTransparency = 1
+tabList.Parent = side
+
+local tabStack = Instance.new("UIListLayout")
+tabStack.Padding = UDim.new(0, 4)
+tabStack.SortOrder = Enum.SortOrder.LayoutOrder
+tabStack.Parent = tabList
+
+local content = Instance.new("Frame")
+content.Size = UDim2.new(1, -121, 1, -44)
+content.Position = UDim2.new(0, 121, 0, 44)
+content.BackgroundTransparency = 1
+content.Parent = hub
+
+local notif = Instance.new("Frame")
+notif.Size = UDim2.new(0, 260, 0, 46)
+notif.Position = UDim2.new(1, 12, 0, 20)
+reg(notif, "BackgroundColor3", "panel")
+notif.BorderSizePixel = 0
+notif.Visible = false
+notif.ZIndex = 50
+notif.Parent = gui
+corner(notif, 8)
+local notifLine = border(notif, "line", 1)
+
+local notifBar = Instance.new("Frame")
+notifBar.Size = UDim2.fromOffset(2, 22)
+notifBar.Position = UDim2.new(0, 0, 0.5, -11)
+reg(notifBar, "BackgroundColor3", "acc")
+notifBar.BorderSizePixel = 0
+notifBar.ZIndex = 51
+notifBar.Parent = notif
+corner(notifBar, 1)
+
+local notifTitle = Instance.new("TextLabel")
+notifTitle.Size = UDim2.new(1, -24, 0, 14)
+notifTitle.Position = UDim2.new(0, 16, 0, 8)
+notifTitle.BackgroundTransparency = 1
+notifTitle.Font = Enum.Font.GothamMedium
+notifTitle.TextSize = 11
+reg(notifTitle, "TextColor3", "txt")
+notifTitle.TextXAlignment = Enum.TextXAlignment.Left
+notifTitle.Text = "Echo Scriptz"
+notifTitle.ZIndex = 51
+notifTitle.Parent = notif
+
+local notifBody = Instance.new("TextLabel")
+notifBody.Size = UDim2.new(1, -24, 0, 14)
+notifBody.Position = UDim2.new(0, 16, 0, 23)
+notifBody.BackgroundTransparency = 1
+notifBody.Font = Enum.Font.Gotham
+notifBody.TextSize = 10
+reg(notifBody, "TextColor3", "dim")
+notifBody.TextXAlignment = Enum.TextXAlignment.Left
+notifBody.Text = ""
+notifBody.ZIndex = 51
+notifBody.Parent = notif
+
+local nid = 0
+local function say(txt)
+	nid = nid + 1
+	local id = nid
+	notifBody.Text = txt
+	notif.Visible = true
+	notif.BackgroundTransparency = 0
+	notifLine.Transparency = 0
+	notifBar.BackgroundTransparency = 0
+	notifTitle.TextTransparency = 0
+	notifBody.TextTransparency = 0
+	notif.Position = UDim2.new(1, 12, 0, 20)
+	tw:Create(notif, TweenInfo.new(0.22, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+		Position = UDim2.new(1, -276, 0, 20),
+	}):Play()
+	task.delay(2.2, function()
+		if nid ~= id then return end
+		local t = tw:Create(notif, TweenInfo.new(0.2), { Position = UDim2.new(1, 12, 0, 20) })
+		t:Play()
+		t.Completed:Connect(function() if nid == id then notif.Visible = false end end)
+	end)
+end
+
+local function makeSwitch(parent, label, initial, onChanged)
+	local row = Instance.new("TextButton")
+	row.Size = UDim2.new(1, 0, 0, 32)
+	reg(row, "BackgroundColor3", "card")
+	row.BorderSizePixel = 0
+	row.AutoButtonColor = false
+	row.Text = ""
+	row.LayoutOrder = #switches + 1
+	row.Parent = parent
+	corner(row, 6)
+	border(row, "line", 1)
+
+	local lbl = Instance.new("TextLabel")
+	lbl.Text = label
+	lbl.Size = UDim2.new(1, -52, 1, 0)
+	lbl.Position = UDim2.new(0, 10, 0, 0)
+	lbl.BackgroundTransparency = 1
+	lbl.Font = Enum.Font.GothamMedium
+	lbl.TextSize = 10
+	lbl.TextXAlignment = Enum.TextXAlignment.Left
+	lbl.Parent = row
+
+	local trk = Instance.new("Frame")
+	trk.Size = UDim2.fromOffset(30, 16)
+	trk.Position = UDim2.new(1, -40, 0.5, -8)
+	trk.BorderSizePixel = 0
+	trk.Parent = row
+	corner(trk, 8)
+
+	local knob = Instance.new("Frame")
+	knob.Size = UDim2.fromOffset(12, 12)
+	knob.Position = UDim2.new(0, 2, 0.5, -6)
+	knob.BorderSizePixel = 0
+	knob.Parent = trk
+	corner(knob, 6)
+
+	local state = initial or false
+
+	local function refresh(animate)
+		local targetPos = state and UDim2.new(1, -14, 0.5, -6) or UDim2.new(0, 2, 0.5, -6)
+		local trackCol = state and C.acc or C.line
+		local knobCol = state and C.bg or C.dim
+		local lblCol = state and C.txt or C.dim
+		if animate then
+			tw:Create(knob, TweenInfo.new(0.18, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { Position = targetPos }):Play()
+			tw:Create(trk, TweenInfo.new(0.18), { BackgroundColor3 = trackCol }):Play()
+			tw:Create(knob, TweenInfo.new(0.18), { BackgroundColor3 = knobCol }):Play()
+			tw:Create(lbl, TweenInfo.new(0.18), { TextColor3 = lblCol }):Play()
+		else
+			knob.Position = targetPos
+			trk.BackgroundColor3 = trackCol
+			knob.BackgroundColor3 = knobCol
+			lbl.TextColor3 = lblCol
+		end
+	end
+	refresh(false)
+
+	row.MouseButton1Click:Connect(function()
+		state = not state
+		refresh(true)
+		if onChanged then onChanged(state) end
+	end)
+	row.MouseEnter:Connect(function() tw:Create(row, TweenInfo.new(0.12), { BackgroundColor3 = C.cardHi }):Play() end)
+	row.MouseLeave:Connect(function() tw:Create(row, TweenInfo.new(0.12), { BackgroundColor3 = C.card }):Play() end)
+
+	local handle = { refresh = refresh, row = row, getState = function() return state end, setState = function(v) state = v; refresh(true) end }
+	switches[#switches+1] = handle
+	return handle
+end
+
+local pages = {}
+local tabBtns = {}
+local active = "scriptz"
+local tabOrder = 0
+
+local function makeTab(key, label)
+	tabOrder = tabOrder + 1
+	local b = Instance.new("TextButton")
+	b.Size = UDim2.new(1, 0, 0, 30)
+	reg(b, "BackgroundColor3", "panel")
+	b.BorderSizePixel = 0
+	b.AutoButtonColor = false
+	b.Font = Enum.Font.GothamMedium
+	b.TextSize = 11
+	b.Text = "  " .. label
+	reg(b, "TextColor3", "dim")
+	b.TextXAlignment = Enum.TextXAlignment.Left
+	b.LayoutOrder = tabOrder
+	b.Parent = tabList
+	corner(b, 6)
+
+	local pill = Instance.new("Frame")
+	pill.Size = UDim2.fromOffset(2, 14)
+	pill.Position = UDim2.new(0, 0, 0.5, -7)
+	pill.BorderSizePixel = 0
+	reg(pill, "BackgroundColor3", "acc")
+	pill.Visible = false
+	pill.Parent = b
+	corner(pill, 1)
+
+	tabBtns[key] = { btn = b, pill = pill }
+
+	b.MouseEnter:Connect(function()
+		if active == key then return end
+		tw:Create(b, TweenInfo.new(0.12), { BackgroundColor3 = C.card, TextColor3 = C.txt }):Play()
+	end)
+	b.MouseLeave:Connect(function()
+		if active == key then return end
+		tw:Create(b, TweenInfo.new(0.12), { BackgroundColor3 = C.panel, TextColor3 = C.dim }):Play()
+	end)
+	b.MouseButton1Click:Connect(function()
+		if active == key then return end
+		active = key
+		for k, t in pairs(tabBtns) do
+			local on = k == key
+			t.pill.Visible = on
+			t.btn.BackgroundColor3 = on and C.card or C.panel
+			t.btn.TextColor3 = on and C.txt or C.dim
+		end
+		for k, p in pairs(pages) do p.Visible = k == key end
+	end)
+	return b
+end
+
+local function makePage(key)
+	local p = Instance.new("Frame")
+	p.Size = UDim2.new(1, -20, 1, -20)
+	p.Position = UDim2.new(0, 10, 0, 10)
+	p.BackgroundTransparency = 1
+	p.Visible = false
+	p.Parent = content
+	pages[key] = p
+	return p
+end
+
+local pS = makePage("scriptz")
+
+local search = Instance.new("Frame")
+search.Size = UDim2.new(1, 0, 0, 28)
+reg(search, "BackgroundColor3", "card")
+search.BorderSizePixel = 0
+search.Parent = pS
+corner(search, 6)
+border(search, "line", 1)
+
+local searchInput = Instance.new("TextBox")
+searchInput.Size = UDim2.new(1, -24, 1, 0)
+searchInput.Position = UDim2.new(0, 12, 0, 0)
+searchInput.BackgroundTransparency = 1
+searchInput.Font = Enum.Font.Gotham
+searchInput.TextSize = 11
+reg(searchInput, "TextColor3", "txt")
+searchInput.PlaceholderText = "search..."
+reg(searchInput, "PlaceholderColor3", "dim")
+searchInput.Text = ""
+searchInput.ClearTextOnFocus = false
+searchInput.TextXAlignment = Enum.TextXAlignment.Left
+searchInput.Parent = search
+
+local sList = Instance.new("ScrollingFrame")
+sList.Size = UDim2.new(1, 0, 1, -76)
+sList.Position = UDim2.new(0, 0, 0, 36)
+sList.BackgroundTransparency = 1
+sList.BorderSizePixel = 0
+sList.ScrollBarThickness = 2
+reg(sList, "ScrollBarImageColor3", "acc")
+sList.CanvasSize = UDim2.new(0, 0, 0, 0)
+sList.AutomaticCanvasSize = Enum.AutomaticSize.Y
+sList.Parent = pS
+
+local sStack = Instance.new("UIListLayout")
+sStack.Padding = UDim.new(0, 6)
+sStack.SortOrder = Enum.SortOrder.LayoutOrder
+sStack.Parent = sList
+
+local function getSrc(e)
+	if e.source then return e.source end
+	if e.url then
+		local ok, r = pcall(game.HttpGet, game, e.url)
+		if ok then return r end
+		return nil, tostring(r)
+	end
+	return nil, "no source"
+end
+
+local function doCopy(e)
+	local src = getSrc(e)
+	if not src then say("copy failed") return end
+	if clip(src) then say("copied " .. e.name) else say("clipboard broke lol") end
+end
+
+local function doRun(e)
+	local src, err = getSrc(e)
+	if not src then say("load failed: " .. tostring(err)) return end
+	local fn = loadstring(src, e.name)
+	if not fn then say("broken script") return end
+	local ok, rErr = pcall(fn)
+	if ok then say("executed " .. e.name) else say("crashed: " .. tostring(rErr)) end
+end
+
+local rows = {}
+for i, e in ipairs(scripts) do
+	local card = Instance.new("Frame")
+	card.Size = UDim2.new(1, -4, 0, 52)
+	reg(card, "BackgroundColor3", "card")
+	card.BorderSizePixel = 0
+	card.LayoutOrder = i
+	card.Parent = sList
+	corner(card, 8)
+	border(card, "line", 1)
+
+	local n = Instance.new("TextLabel")
+	n.Text = e.name
+	n.Size = UDim2.new(1, -160, 0, 14)
+	n.Position = UDim2.new(0, 12, 0, 9)
+	n.BackgroundTransparency = 1
+	n.Font = Enum.Font.GothamMedium
+	n.TextSize = 12
+	reg(n, "TextColor3", "txt")
+	n.TextXAlignment = Enum.TextXAlignment.Left
+	n.Parent = card
+
+	local d = Instance.new("TextLabel")
+	d.Text = e.desc or ""
+	d.Size = UDim2.new(1, -160, 0, 20)
+	d.Position = UDim2.new(0, 12, 0, 25)
+	d.BackgroundTransparency = 1
+	d.Font = Enum.Font.Gotham
+	d.TextSize = 10
+	reg(d, "TextColor3", "dim")
+	d.TextXAlignment = Enum.TextXAlignment.Left
+	d.TextYAlignment = Enum.TextYAlignment.Top
+	d.TextWrapped = true
+	d.Parent = card
+
+	local cp = Instance.new("TextButton")
+	cp.Size = UDim2.fromOffset(52, 22)
+	cp.Position = UDim2.new(1, -118, 0.5, -11)
+	cp.AnchorPoint = Vector2.new(1, 0.5)
+	reg(cp, "BackgroundColor3", "cardHi")
+	cp.BorderSizePixel = 0
+	cp.AutoButtonColor = false
+	cp.Font = Enum.Font.GothamMedium
+	cp.TextSize = 10
+	cp.Text = "copy"
+	reg(cp, "TextColor3", "txt")
+	cp.Parent = card
+	corner(cp, 5)
+	border(cp, "line", 1)
+
+	local rn = Instance.new("TextButton")
+	rn.Size = UDim2.fromOffset(62, 22)
+	rn.Position = UDim2.new(1, -12, 0.5, -11)
+	rn.AnchorPoint = Vector2.new(1, 0.5)
+	reg(rn, "BackgroundColor3", "acc")
+	rn.BorderSizePixel = 0
+	rn.AutoButtonColor = false
+	rn.Font = Enum.Font.GothamMedium
+	rn.TextSize = 10
+	rn.Text = "execute"
+	reg(rn, "TextColor3", "bg")
+	rn.Parent = card
+	corner(rn, 5)
+	border(rn, "acc", 1)
+
+	cp.MouseEnter:Connect(function() tw:Create(cp, TweenInfo.new(0.12), { BackgroundColor3 = C.cardHi:Lerp(Color3.new(1,1,1), 0.08) }):Play() end)
+	cp.MouseLeave:Connect(function() tw:Create(cp, TweenInfo.new(0.12), { BackgroundColor3 = C.cardHi }):Play() end)
+	rn.MouseEnter:Connect(function() tw:Create(rn, TweenInfo.new(0.12), { BackgroundColor3 = C.acc:Lerp(Color3.new(1,1,1), 0.15) }):Play() end)
+	rn.MouseLeave:Connect(function() tw:Create(rn, TweenInfo.new(0.12), { BackgroundColor3 = C.acc }):Play() end)
+	card.MouseEnter:Connect(function() tw:Create(card, TweenInfo.new(0.15), { BackgroundColor3 = C.cardHi }):Play() end)
+	card.MouseLeave:Connect(function() tw:Create(card, TweenInfo.new(0.15), { BackgroundColor3 = C.card }):Play() end)
+
+	cp.MouseButton1Click:Connect(function() doCopy(e) end)
+	rn.MouseButton1Click:Connect(function() doRun(e) end)
+
+	rows[#rows+1] = { frame = card, data = e }
+end
+
+searchInput:GetPropertyChangedSignal("Text"):Connect(function()
+	local q = string.lower(searchInput.Text)
+	for _, r in ipairs(rows) do
+		local n = string.lower(r.data.name or "")
+		local d = string.lower(r.data.desc or "")
+		r.frame.Visible = (q == "" or string.find(n, q, 1, true) or string.find(d, q, 1, true)) and true or false
+	end
+end)
+
+local invite = Instance.new("TextButton")
+invite.Size = UDim2.new(1, 0, 0, 30)
+invite.Position = UDim2.new(0, 0, 1, -44)
+reg(invite, "BackgroundColor3", "card")
+invite.BorderSizePixel = 0
+invite.AutoButtonColor = false
+invite.Font = Enum.Font.GothamMedium
+invite.TextSize = 11
+invite.Text = "discord.gg/wyJj5Q3YN"
+reg(invite, "TextColor3", "txt")
+invite.Parent = pS
+corner(invite, 8)
+local invLine = border(invite, "line", 1)
+
+invite.MouseEnter:Connect(function()
+	tw:Create(invite, TweenInfo.new(0.12), { BackgroundColor3 = C.cardHi, TextColor3 = C.acc }):Play()
+	tw:Create(invLine, TweenInfo.new(0.12), { Color = C.acc }):Play()
+end)
+invite.MouseLeave:Connect(function()
+	tw:Create(invite, TweenInfo.new(0.12), { BackgroundColor3 = C.card, TextColor3 = C.txt }):Play()
+	tw:Create(invLine, TweenInfo.new(0.12), { Color = C.line }):Play()
+end)
+invite.MouseButton1Click:Connect(function()
+	if clip(INVITE) then say("copied invite") else say("clipboard broke lol") end
+end)
+
+local cred = Instance.new("TextLabel")
+cred.Text = "credits: mey  ·  anti crash"
+cred.Size = UDim2.new(1, 0, 0, 12)
+cred.Position = UDim2.new(0, 0, 1, -12)
+cred.BackgroundTransparency = 1
+cred.Font = Enum.Font.Gotham
+cred.TextSize = 10
+reg(cred, "TextColor3", "dim")
+cred.TextXAlignment = Enum.TextXAlignment.Center
+cred.Parent = pS
+
+local pSpy = makePage("spy")
+
+makeSwitch(pSpy, "extended spy tags", true, function(v)
+	Config.SpyChat = v
+	say("extended tags " .. (v and "on" or "off"))
+end)
+
+local spyInfo = Instance.new("TextLabel")
+spyInfo.Size = UDim2.new(1, 0, 1, -42)
+spyInfo.Position = UDim2.new(0, 0, 0, 42)
+spyInfo.BackgroundColor3 = C.card
+spyInfo.BorderSizePixel = 0
+spyInfo.Font = Enum.Font.Gotham
+spyInfo.TextSize = 10
+reg(spyInfo, "TextColor3", "dim")
+spyInfo.TextXAlignment = Enum.TextXAlignment.Left
+spyInfo.TextYAlignment = Enum.TextYAlignment.Top
+spyInfo.TextWrapped = true
+spyInfo.RichText = true
+spyInfo.Text = [[
+
+  base rank tags (always on):
+    <font color="#969696">peasant</font>   (grey)
+    <font color="#04AFEC">arken</font>     (blue)
+    <font color="#F5CD30">admin</font>     (gold)
+
+  extended tags (toggle above):
+    <font color="#FF0000">hidden</font>    (red)
+    <font color="#FFB3B3">genius</font>    (pink)
+    <font color="#C80000">dumb</font>      (dark red)
+
+  hidden = "Muted" tag OR message starts with ";" or ";!"
+  the grey / blue / gold tags can never be turned off.
+]]
+spyInfo.Parent = pSpy
+corner(spyInfo, 6)
+border(spyInfo, "line", 1)
+
+pcall(function()
+	if not TCS then return end
+	local cubesFolder = WS:FindFirstChild("Cubes")
+	local rankColors = {
+		peasant = {150, 103, 102}, arken = {4, 175, 236}, admin = {245, 205, 48},
+		hidden = {255, 0, 0}, iqgenius = {255, 179, 179}, iqdumb = {200, 0, 0}
+	}
+	if cubesFolder then rankColors.peasant = {128, 128, 128} end
+	local rankHex = {}
+	for k, v in pairs(rankColors) do rankHex[k] = "#" .. Color3.fromRGB(table.unpack(v)):ToHex() end
+
+	TCS.OnIncomingMessage = function(mdata)
+		local plr2 = mdata.TextSource and mdata.TextSource.UserId and Players:GetPlayerByUserId(mdata.TextSource.UserId)
+		if not plr2 then return end
+		local role = "peasant"
+		if plr2.Neutral == true then
+			if plr2:GetAttribute("Arken") == true then role = "arken" else role = "peasant" end
+		else
+			role = "admin"
+		end
+		local hidden = false
+		local iqTag = nil
+		local muted = false
+		if Config.SpyChat then
+			if plr2:HasTag("Muted") then role = "hidden"; muted = true end
+			if string.sub(mdata.Text, 1, 1) == ";" or string.sub(mdata.Text, 1, 2) == ";!" then role = "hidden"; hidden = true end
+			if plr2:GetAttribute("IQ") then
+				if plr2:GetAttribute("IQ") >= 200 then iqTag = "genius 🧠"; role = "iqgenius"
+				elseif plr2:GetAttribute("IQ") <= 50 then iqTag = "dumb 🤪"; role = "iqdumb" end
+			end
+		end
+		local extra = ""
+		if hidden then extra = extra .. " (HIDDEN CHAT)" end
+		if iqTag then extra = extra .. " (" .. iqTag .. ")" end
+		if muted then extra = extra .. " (MUTED)" end
+		if cubesFolder then
+			mdata.PrefixText = string.format('<font color="%s"><b><font color=\'rgb(%d,%d,%d)\'>[%s%s]: </font></b></font>',
+				rankHex[role], rankColors[role][1], rankColors[role][2], rankColors[role][3], plr2.DisplayName, extra)
+		else
+			mdata.PrefixText = string.format('<font color="%s"><i><font color=\'rgb(%d,%d,%d)\'>(%s%s) </font></i></font>',
+				rankHex[role], rankColors[role][1], rankColors[role][2], rankColors[role][3], plr2.DisplayName, extra)
+		end
+	end
+end)
+
+local pGrief = makePage("grief")
+
+local gCfg = {
+	DeleteAura = false, SignAura = false, ShovelAura = false,
+	PaintAura = false, SprayAura = false,
+	ShapeGrow = false, ShapeShrink = false,
+	BuildAura = false, AntiLag = false,
+	AuraRange = 30, AuraDelay = 0.01,
+	FlyEnabled = false, FlySpeed = 50,
+	Godmode = false, AutoPickup = false, AutoDisarmOnDeath = false,
+	R6OnDeath = false,
+}
+
+local char = plr.Character
+plr.CharacterAdded:Connect(function(c) char = c end)
+
+local TOOL_NEEDS = {
+	Delete = { "DeleteAura", "AntiLag" },
+	Sign   = { "SignAura" },
+	Shovel = { "ShovelAura" },
+	Paint  = { "PaintAura", "SprayAura" },
+	Shape  = { "ShapeGrow", "ShapeShrink" },
+	Build  = { "BuildAura" },
+}
+
+-- ensure equipped: JUST moves the tool, never modifies handle properties
+local function ensureEquipped(name)
+	if not char then return nil end
+	local tool = char:FindFirstChild(name)
+	if tool then return tool end
+	if not plr:FindFirstChild("Backpack") then return nil end
+	local bp = plr.Backpack:FindFirstChild(name)
+	if not bp then return nil end
+	bp.Parent = char
+	return bp
+end
+
+-- no-op — we no longer modify handle properties
+local function restoreHandle(tool) end
+
+local function toolShouldBeEquipped(toolName)
+	local needs = TOOL_NEEDS[toolName]
+	if not needs then return false end
+	for _, key in ipairs(needs) do if gCfg[key] then return true end end
+	return false
+end
+
+local function syncTool(toolName)
+	local shouldHave = toolShouldBeEquipped(toolName)
+	local equipped = char and char:FindFirstChild(toolName)
+	if shouldHave then
+		ensureEquipped(toolName)
+	elseif equipped then
+		restoreHandle(equipped)
+		if plr:FindFirstChild("Backpack") then equipped.Parent = plr.Backpack end
+	end
+end
+
+local function syncAllTools()
+	for name in pairs(TOOL_NEEDS) do syncTool(name) end
+end
+
+local function getRemote(name)
+	local t = ensureEquipped(name)
+	if not t then return nil end
+	return t:FindFirstChild("Script") and t.Script:FindFirstChild("Event")
+end
+
+local function nearbyParts()
+	local out = {}
+	local folder = WS:FindFirstChild("Bricks")
+	if not folder then return out end
+	local hrp = char and char:FindFirstChild("HumanoidRootPart")
+	if not hrp then return out end
+	local range = gCfg.AuraRange or 30
+	for _, part in ipairs(folder:GetDescendants()) do
+		if part:IsA("BasePart") and part.Name == "Brick" then
+			if (part.Position - hrp.Position).Magnitude <= range then
+				out[#out+1] = part
+			end
+		end
+	end
+	return out
+end
+
+-- position-based tracking (survives brick respawns)
+local function posKey(part)
+	local p = part.Position
+	return string.format("%.0f_%.0f_%.0f", p.X, p.Y, p.Z)
+end
+
+local function pickUnvisited(pool, visited)
+	local fresh = {}
+	for _, b in ipairs(pool) do
+		local k = posKey(b)
+		if not visited[k] then fresh[#fresh+1] = b end
+	end
+	if #fresh == 0 then
+		for k in pairs(visited) do visited[k] = nil end
+		fresh = pool
+	end
+	return fresh
+end
+
+local function onChar(c)
+	char = c
+	local hum = c:WaitForChild("Humanoid", 5)
+	if hum then
+		hum.Died:Connect(function()
+			if not gCfg.AutoDisarmOnDeath then return end
+			pcall(function()
+				hum:UnequipTools()
+				local root = c:FindFirstChild("HumanoidRootPart") or c:FindFirstChild("Head")
+				local drop = root and (root.CFrame + Vector3.new(0, 2, 0)) or CFrame.new(0, 10, 0)
+				for _, tool in ipairs(c:GetChildren()) do
+					if tool:IsA("Tool") then
+						local h = tool:FindFirstChild("Handle") or tool:FindFirstChildOfClass("BasePart")
+						tool.Parent = WS
+						if h then h.CFrame = drop; h.CanCollide = true; h.Velocity = Vector3.new(0, 2, 0) end
+					end
+				end
+				if plr:FindFirstChild("Backpack") then
+					for _, tool in ipairs(plr.Backpack:GetChildren()) do
+						if tool:IsA("Tool") then
+							local h = tool:FindFirstChild("Handle") or tool:FindFirstChildOfClass("BasePart")
+							tool.Parent = WS
+							if h then h.CFrame = drop; h.CanCollide = true; h.Velocity = Vector3.new(0, 2, 0) end
+						end
+					end
+				end
+			end)
+		end)
+	end
+	syncAllTools()
+end
+if plr.Character then onChar(plr.Character) end
+plr.CharacterAdded:Connect(onChar)
+
+task.spawn(function()
+	while gui.Parent do
+		task.wait(0.1)
+		if gCfg.Godmode and char then
+			pcall(function()
+				local hum = char:FindFirstChildOfClass("Humanoid")
+				if hum and hum.Health > 0 then
+					hum.MaxHealth = math.huge
+					hum.Health = math.huge
+					pcall(function() hum:SetStateEnabled(Enum.HumanoidStateType.Dead, false) end)
+				end
+			end)
+		end
+	end
+end)
+
+task.spawn(function()
+	while gui.Parent do
+		task.wait(0.1)
+		if gCfg.AutoPickup and char and char:FindFirstChild("HumanoidRootPart") then
+			local hum = char:FindFirstChildOfClass("Humanoid")
+			if hum and hum.Health > 0 then
+				pcall(function()
+					local hrp = char.HumanoidRootPart
+					for _, item in ipairs(WS:GetChildren()) do
+						if item:IsA("Tool") and item:FindFirstChild("Handle") then
+							if (hrp.Position - item.Handle.Position).Magnitude <= 150 then
+								firetouchinterest(hrp, item.Handle, 0)
+								firetouchinterest(hrp, item.Handle, 1)
+							end
+						end
+					end
+				end)
+			end
+		end
+	end
+end)
+
+-- R6 ON DEATH — TextChannel:SendAsync("r6") THEN equip Arkenstone
+task.spawn(function()
+	local armed = true
+	local function chatSend(msg)
+		local sent = false
+		pcall(function()
+			local tcs = game:GetService("TextChatService")
+			if tcs and tcs.TextChannels then
+				local chan = tcs.TextChannels:FindFirstChild("RBXGeneral")
+				if chan and chan.SendAsync then
+					chan:SendAsync(msg)
+					sent = true
+				end
+			end
+		end)
+		if sent then return true end
+		pcall(function()
+			local tcs = game:GetService("TextChatService")
+			if tcs and tcs.Chat and tcs.Chat.Chat then
+				tcs.Chat:Chat(msg); sent = true
+			end
+		end)
+		if sent then return true end
+		pcall(function()
+			local rs = game:GetService("ReplicatedStorage")
+			local ev = rs:FindFirstChild("DefaultChatSystemChatEvents")
+			if ev then
+				local say = ev:FindFirstChild("SayMessageRequest")
+				if say then say:FireServer(msg, "All"); sent = true end
+			end
+		end)
+		return sent
+	end
+
+	while gui.Parent do
+		task.wait(0.05)
+		if gCfg.R6OnDeath and char then
+			local hum = char:FindFirstChildOfClass("Humanoid")
+			if hum then
+				if hum.Health > 0 then
+					armed = true
+				end
+				if armed and hum.Health <= 0 then
+					armed = false
+
+					-- say r6 first
+					chatSend("r6")
+
+					-- then equip The Arkenstone
+					local tool = nil
+					if char then tool = char:FindFirstChild("The Arkenstone") end
+					if not tool and plr:FindFirstChild("Backpack") then
+						tool = plr.Backpack:FindFirstChild("The Arkenstone")
+					end
+					if tool then
+						tool.Parent = char
+					end
+				end
+			end
+		end
+	end
+end)
+
+local vDelete, vPaint, vSpray, vGrow, vShrink = {}, {}, {}, {}, {}
+
+-- DELETE AURA — 1 per tick, position tracked
+task.spawn(function()
+	while gui.Parent do
+		task.wait(gCfg.AuraDelay)
+		if gCfg.DeleteAura and char and char:FindFirstChild("HumanoidRootPart") then
+			pcall(function()
+				local tool = ensureEquipped("Delete")
+				if not tool then return end
+				local orig = tool:FindFirstChild("origevent")
+				local se = tool:FindFirstChild("Script") and tool.Script:FindFirstChild("Event")
+				if not orig and not se then return end
+				local pool = nearbyParts()
+				local fresh = pickUnvisited(pool, vDelete)
+				local part = fresh[1]
+				if part and part.Parent and part:IsA("BasePart") then
+					vDelete[posKey(part)] = true
+					if orig then orig:Invoke(part, part.Position)
+					elseif se then se:FireServer(part, part.Position) end
+				end
+			end)
+		end
+	end
+end)
+
+-- SIGN AURA
+task.spawn(function()
+	while gui.Parent do
+		task.wait(gCfg.AuraDelay)
+		if gCfg.SignAura and char and char:FindFirstChild("HumanoidRootPart") then
+			pcall(function()
+				local hrp = char.HumanoidRootPart
+				local ev = getRemote("Sign")
+				if not ev then return end
+				local r = math.random() * 24
+				local a = math.random() * math.pi * 2
+				local off = Vector3.new(math.cos(a) * r, 0, math.sin(a) * r)
+				ev:FireServer(WS.Terrain, Enum.NormalId.Top, hrp.Position + off)
+			end)
+		end
+	end
+end)
+
+-- SHOVEL AURA
+task.spawn(function()
+	local ang = 0
+	while gui.Parent do
+		task.wait(gCfg.AuraDelay)
+		if gCfg.ShovelAura and char and char:FindFirstChild("HumanoidRootPart") then
+			pcall(function()
+				local hrp = char.HumanoidRootPart
+				local ev = getRemote("Shovel")
+				if not ev then return end
+				ang = (ang + 0.5) % (math.pi * 2)
+				local off = Vector3.new(math.cos(ang) * 24, 0, math.sin(ang) * 24)
+				ev:FireServer(WS.Terrain, Enum.NormalId.Top, hrp.Position + off, "dig")
+			end)
+		end
+	end
+end)
+
+-- PAINT AURA — bright neon rainbow, 1 per tick, position tracked
+task.spawn(function()
+	local hue = 0
+	while gui.Parent do
+		task.wait(gCfg.AuraDelay)
+		if gCfg.PaintAura and char and char:FindFirstChild("HumanoidRootPart") then
+			pcall(function()
+				local ev = getRemote("Paint")
+				if not ev then return end
+				local hrp = char.HumanoidRootPart
+				local pool = nearbyParts()
+				local fresh = pickUnvisited(pool, vPaint)
+				local part = fresh[1]
+				if part and part.Parent and part:IsA("BasePart") then
+					vPaint[posKey(part)] = true
+					hue = (hue + 0.05) % 1
+					-- saturation 1, value 1 = max brightness, no dark colors
+					local col = Color3.fromHSV(hue, 1, 1)
+					ev:FireServer(part, Enum.NormalId.Left, hrp.Position, "both 🤝", col, "neon", "")
+				end
+			end)
+		end
+	end
+end)
+
+-- SPRAY AURA — 1 per tick, position tracked
+task.spawn(function()
+	local tags = {"griefed", "lol", "ez", "👋", "was here", "destroyed"}
+	local faces = { Enum.NormalId.Left, Enum.NormalId.Right, Enum.NormalId.Top, Enum.NormalId.Bottom, Enum.NormalId.Front, Enum.NormalId.Back }
+	while gui.Parent do
+		task.wait(gCfg.AuraDelay * 2)
+		if gCfg.SprayAura and char and char:FindFirstChild("HumanoidRootPart") then
+			pcall(function()
+				local ev = getRemote("Paint")
+				if not ev then return end
+				local hrp = char.HumanoidRootPart
+				local pool = nearbyParts()
+				local fresh = pickUnvisited(pool, vSpray)
+				local part = fresh[1]
+				if part and part.Parent and part:IsA("BasePart") then
+					vSpray[posKey(part)] = true
+					local face = faces[math.random(1, #faces)]
+					local txt = tags[math.random(1, #tags)]
+					local col = Color3.fromHSV(math.random(), 1, 1)
+					ev:FireServer(part, face, hrp.Position, "both 🤝", col, "spray", txt)
+				end
+			end)
+		end
+	end
+end)
+
+-- SHAPE GROW — 1 per tick, position tracked
+task.spawn(function()
+	local sides = {Enum.NormalId.Right, Enum.NormalId.Top, Enum.NormalId.Back}
+	while gui.Parent do
+		task.wait(gCfg.AuraDelay * 2)
+		if gCfg.ShapeGrow and char and char:FindFirstChild("HumanoidRootPart") then
+			pcall(function()
+				local ev = getRemote("Shape")
+				if not ev then return end
+				local hrp = char.HumanoidRootPart
+				local pool = nearbyParts()
+				local fresh = pickUnvisited(pool, vGrow)
+				local part = fresh[1]
+				if part and part.Parent and part:IsA("BasePart") then
+					vGrow[posKey(part)] = true
+					for _, side in ipairs(sides) do
+						ev:FireServer(part, side, hrp.Position, "increase")
+						task.wait(0.02)
+					end
+				end
+			end)
+		end
+	end
+end)
+
+-- SHAPE SHRINK — 1 per tick, position tracked
+task.spawn(function()
+	local sides = {Enum.NormalId.Back, Enum.NormalId.Top, Enum.NormalId.Right}
+	while gui.Parent do
+		task.wait(gCfg.AuraDelay * 2)
+		if gCfg.ShapeShrink and char and char:FindFirstChild("HumanoidRootPart") then
+			pcall(function()
+				local ev = getRemote("Shape")
+				if not ev then return end
+				local hrp = char.HumanoidRootPart
+				local pool = nearbyParts()
+				local fresh = pickUnvisited(pool, vShrink)
+				local part = fresh[1]
+				if part and part.Parent and part:IsA("BasePart") and part.Size.X > 1 then
+					vShrink[posKey(part)] = true
+					for _, side in ipairs(sides) do
+						ev:FireServer(part, side, hrp.Position, "decrease")
+						task.wait(0.02)
+					end
+				end
+			end)
+		end
+	end
+end)
+
+-- BUILD AURA
+task.spawn(function()
+	while gui.Parent do
+		task.wait(0.15)
+		if gCfg.BuildAura and char and char:FindFirstChild("HumanoidRootPart") then
+			pcall(function()
+				local ev = getRemote("Build")
+				if not ev then return end
+				local hrp = char.HumanoidRootPart
+				for i = 1, 4 do
+					local a = math.random() * math.pi * 2
+					local r = 8 + math.random() * 40
+					local raw = hrp.Position + Vector3.new(math.cos(a) * r, 0, math.sin(a) * r)
+					local pos = Vector3.new(
+						math.floor(raw.X / 4) * 4 + 2,
+						math.floor(raw.Y / 4) * 4 + 2,
+						math.floor(raw.Z / 4) * 4 + 2
+					)
+					ev:FireServer(WS.Terrain, Enum.NormalId.Top, pos, "normal")
+				end
+			end)
+		end
+	end
+end)
+
+-- ANTI LAG
+task.spawn(function()
+	local function boxesOverlap(a, b, tol)
+		tol = tol or 0.3
+		local ad = (a.Position - b.Position):Abs()
+		return (a.Size.X/2 + b.Size.X/2 - ad.X) > tol and (a.Size.Y/2 + b.Size.Y/2 - ad.Y) > tol and (a.Size.Z/2 + b.Size.Z/2 - ad.Z) > tol
+	end
+	local function isInside(a, b)
+		return math.abs(a.Position.X - b.Position.X) + a.Size.X <= b.Size.X + 0.1
+			and math.abs(a.Position.Y - b.Position.Y) + a.Size.Y <= b.Size.Y + 0.1
+			and math.abs(a.Position.Z - b.Position.Z) + a.Size.Z <= b.Size.Z + 0.1
+	end
+	local checked = {}
+	while gui.Parent do
+		task.wait(0.2)
+		if gCfg.AntiLag and char and char:FindFirstChild("HumanoidRootPart") then
+			pcall(function()
+				local folder = WS:FindFirstChild("Bricks")
+				if not folder then return end
+				local playerFolder = folder:FindFirstChild(plr.Name)
+				if not playerFolder then return end
+				local tool = ensureEquipped("Delete")
+				if not tool then return end
+				local delEv = tool:FindFirstChild("origevent") or (tool:FindFirstChild("Script") and tool.Script:FindFirstChild("Event"))
+				if not delEv then return end
+				local bricks = {}
+				for _, b in ipairs(playerFolder:GetChildren()) do
+					if b:IsA("BasePart") and b.Name == "Brick" then bricks[#bricks+1] = b end
+				end
+				local deleted = 0
+				for i = 1, #bricks do
+					if deleted >= 30 then break end
+					local a = bricks[i]
+					if a and a.Parent and not checked[a] then
+						for j = i + 1, #bricks do
+							if deleted >= 30 then break end
+							local b = bricks[j]
+							if b and b.Parent and not checked[b] and boxesOverlap(a, b) then
+								local victim
+								if isInside(a, b) then victim = a
+								elseif isInside(b, a) then victim = b
+								else victim = (a.Size.X*a.Size.Y*a.Size.Z) <= (b.Size.X*b.Size.Y*b.Size.Z) and a or b end
+								checked[victim] = true
+								task.spawn(function()
+									pcall(function()
+										if delEv.Invoke then delEv:Invoke(victim, victim.Position)
+										elseif delEv.FireServer then delEv:FireServer(victim, victim.Position) end
+									end)
+								end)
+								deleted = deleted + 1
+								task.wait(0.01)
+							end
+						end
+					end
+				end
+			end)
+		end
+	end
+end)
+
+-- FLY
+task.spawn(function()
+	local bv, bg
+	while gui.Parent do
+		RS.RenderStepped:Wait()
+		if gCfg.FlyEnabled and char and char:FindFirstChild("HumanoidRootPart") then
+			local hrp = char.HumanoidRootPart
+			local cam = WS.CurrentCamera
+			local hum = char:FindFirstChildOfClass("Humanoid")
+			if not bv or bv.Parent ~= hrp then
+				if bv then bv:Destroy() end
+				bv = Instance.new("BodyVelocity")
+				bv.MaxForce = Vector3.new(1e9, 1e9, 1e9)
+				bv.Velocity = Vector3.new(0, 0, 0)
+				bv.Parent = hrp
+			end
+			if not bg or bg.Parent ~= hrp then
+				if bg then bg:Destroy() end
+				bg = Instance.new("BodyGyro")
+				bg.MaxTorque = Vector3.new(1e9, 1e9, 1e9)
+				bg.P = 9e4
+				bg.Parent = hrp
+			end
+			if hum then hum.PlatformStand = true end
+			bg.CFrame = cam.CFrame
+			local dir = Vector3.new()
+			if uis:IsKeyDown(Enum.KeyCode.W) then dir = dir + cam.CFrame.LookVector end
+			if uis:IsKeyDown(Enum.KeyCode.S) then dir = dir - cam.CFrame.LookVector end
+			if uis:IsKeyDown(Enum.KeyCode.A) then dir = dir - cam.CFrame.RightVector end
+			if uis:IsKeyDown(Enum.KeyCode.D) then dir = dir + cam.CFrame.RightVector end
+			if uis:IsKeyDown(Enum.KeyCode.Space) or uis:IsKeyDown(Enum.KeyCode.E) then dir = dir + Vector3.new(0, 1, 0) end
+			if uis:IsKeyDown(Enum.KeyCode.LeftShift) or uis:IsKeyDown(Enum.KeyCode.Q) then dir = dir - Vector3.new(0, 1, 0) end
+			if hum and dir.Magnitude == 0 then
+				local m = hum.MoveDirection
+				if m.Magnitude > 0 then dir = Vector3.new(m.X, cam.CFrame.LookVector.Y * math.abs(m.Z), m.Z) end
+			end
+			if dir.Magnitude > 0 then
+				bv.Velocity = bv.Velocity:Lerp(dir.Unit * gCfg.FlySpeed, 0.25)
+			else
+				bv.Velocity = bv.Velocity:Lerp(Vector3.new(0, 0, 0), 0.25)
+			end
+		else
+			if bv then bv:Destroy(); bv = nil end
+			if bg then bg:Destroy(); bg = nil end
+			if char and char:FindFirstChildOfClass("Humanoid") then
+				char:FindFirstChildOfClass("Humanoid").PlatformStand = false
+			end
+		end
+	end
+end)
+
+local gScroll = Instance.new("ScrollingFrame")
+gScroll.Size = UDim2.new(1, 0, 1, 0)
+gScroll.BackgroundTransparency = 1
+gScroll.BorderSizePixel = 0
+gScroll.ScrollBarThickness = 2
+reg(gScroll, "ScrollBarImageColor3", "acc")
+gScroll.CanvasSize = UDim2.new(0, 0, 0, 0)
+gScroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
+gScroll.Parent = pGrief
+
+local gGrid = Instance.new("UIGridLayout")
+gGrid.CellSize = UDim2.new(0.5, -4, 0, 32)
+gGrid.CellPadding = UDim2.new(0, 6, 0, 6)
+gGrid.SortOrder = Enum.SortOrder.LayoutOrder
+gGrid.Parent = gScroll
+
+local function addToggle(key, label, initial)
+	makeSwitch(gScroll, label, initial, function(v)
+		gCfg[key] = v
+		syncAllTools()
+		say(label .. ": " .. (v and "on" or "off"))
+	end)
+end
+
+addToggle("DeleteAura", "delete aura", false)
+addToggle("SignAura", "sign aura", false)
+addToggle("ShovelAura", "shovel aura", false)
+addToggle("PaintAura", "paint aura", false)
+addToggle("SprayAura", "spray aura", false)
+addToggle("ShapeGrow", "shape aura (grow)", false)
+addToggle("ShapeShrink", "shape aura (shrink)", false)
+addToggle("BuildAura", "build aura", false)
+addToggle("AntiLag", "anti lag", false)
+addToggle("Godmode", "godmode", false)
+addToggle("AutoPickup", "auto pickup", false)
+addToggle("AutoDisarmOnDeath", "drop on death", false)
+addToggle("FlyEnabled", "fly", false)
+addToggle("R6OnDeath", "r6 on death (enli)", false)
+
+local pBuild = makePage("build")
+
+local BUILD_CFG = {
+	HeightOffset = 12,
+	PlaceRetry = 0.005,
+	PlaceRetryNC = 0.02,
+	ResizeGap = 0.005,
+	ResizeSide = 0.01,
+	MaxAttempts = 20,
+}
+
+local SYM = {
+	["!"]=Enum.Material.SmoothPlastic, ["@"]=Enum.Material.Plastic, ["#"]=Enum.Material.CeramicTiles,
+	["$"]=Enum.Material.Brick, ["%"]=Enum.Material.WoodPlanks, ["^"]=Enum.Material.Ice,
+	["&"]=Enum.Material.Grass, ["*"]=Enum.Material.Sand, ["("]=Enum.Material.Snow,
+	[")"]=Enum.Material.Glass, ["-"]=Enum.Material.Wood, ["_"]=Enum.Material.Slate,
+	["="]=Enum.Material.Pebble, ["+"]=Enum.Material.Marble, ["["]=Enum.Material.Granite,
+	["]"]=Enum.Material.DiamondPlate, ["{"]=Enum.Material.Metal, ["}"]=Enum.Material.Asphalt,
+	["~"]=Enum.Material.Concrete, ["`"]=Enum.Material.Pavement, ["?"]=Enum.Material.Neon,
+}
+
+local MAT_PAINT = {
+	[Enum.Material.SmoothPlastic]="smooth", [Enum.Material.Plastic]="plastic", [Enum.Material.CeramicTiles]="tiles",
+	[Enum.Material.Brick]="bricks", [Enum.Material.WoodPlanks]="planks", [Enum.Material.Ice]="ice",
+	[Enum.Material.Grass]="grass", [Enum.Material.Sand]="sand", [Enum.Material.Snow]="snow",
+	[Enum.Material.Glass]="glass", [Enum.Material.Wood]="wood", [Enum.Material.Slate]="stone",
+	[Enum.Material.Pebble]="pebble", [Enum.Material.Marble]="marble", [Enum.Material.Granite]="granite",
+	[Enum.Material.DiamondPlate]="steel", [Enum.Material.Metal]="metal", [Enum.Material.Asphalt]="asphalt",
+	[Enum.Material.Concrete]="concrete", [Enum.Material.Pavement]="pavement", [Enum.Material.Neon]="neon",
+}
+
+local function hexToCol(h)
+	return Color3.new(tonumber(h:sub(1,2),16)/255, tonumber(h:sub(3,4),16)/255, tonumber(h:sub(5,6),16)/255)
+end
+
+local function colToHex(c)
+	return string.format("%02X%02X%02X", math.floor(c.R*255+0.5), math.floor(c.G*255+0.5), math.floor(c.B*255+0.5))
+end
+
+local function matToSym(m)
+	for k, v in pairs(SYM) do if v == m then return k end end
+	return "@"
+end
+
+local function fastRemote(name)
+	local t
+	if char then
+		t = char:FindFirstChild(name)
+		if not t and plr:FindFirstChild("Backpack") then
+			t = plr.Backpack:FindFirstChild(name)
+			if t then t.Parent = char end
+		end
+	end
+	if not t then return nil end
+	local s = t:FindFirstChild("Script", true)
+	if s then return s:FindFirstChild("Event") end
+	return t:FindFirstChild("Event")
+end
+
+local function myBricks()
+	local f = WS:FindFirstChild("Bricks")
+	return f and f:FindFirstChild(plr.Name) or nil
+end
+
+local function brickCount()
+	local f = myBricks()
+	if not f then return 0 end
+	local n = 0
+	for _, b in ipairs(f:GetChildren()) do if b:IsA("BasePart") and b.Name == "Brick" then n = n + 1 end end
+	return n
+end
+
+local function newestBrick()
+	local f = myBricks()
+	if not f then return nil end
+	local bs = {}
+	for _, b in ipairs(f:GetChildren()) do if b:IsA("BasePart") and b.Name == "Brick" then bs[#bs+1] = b end end
+	return bs[#bs]
+end
+
+local function cornerPos(cp, size)
+	local h = size / 2
+	return Vector3.new(cp.X - h.X + 0.5, cp.Y - h.Y + 0.5, cp.Z - h.Z + 0.5)
+end
+
+local function parseBuild(str)
+	local blocks = {}
+	for bd in str:gmatch("|([^|]+)") do
+		local colorHex = bd:sub(1, 6)
+		local sym = bd:sub(7, 7)
+		local rest = bd:sub(8)
+		local cc = true
+		if rest:sub(1,1) == "^" then cc = false; rest = rest:sub(2) end
+		local sizeD, posD, extra = rest:match("^([%d,]+)%.([%-%.%d,]+)%.?(.*)")
+		if sizeD and posD then
+			local sx, sy, sz = sizeD:match("([%d]+),([%d]+),([%d]+)")
+			local px, py, pz = posD:match("([%-]?%d+%.?%d*),([%-]?%d+%.?%d*),([%-]?%d+%.?%d*)")
+			if sx and px then
+				local size = Vector3.new(tonumber(sx), tonumber(sy), tonumber(sz))
+				local cp = Vector3.new(tonumber(px), tonumber(py), tonumber(pz))
+				local is4 = (size == Vector3.new(4,4,4))
+				local m4 = function(n) return ((n % 4) + 4) % 4 end
+				local onGrid = m4(cp.X) == 2 and m4(cp.Y) == 2 and m4(cp.Z) == 2
+				local sprays = {}
+				if extra and extra ~= "" then
+					for face, text, col in extra:gmatch('(%a+)"([^"]*)""([^"]*)"') do
+						local fm = {L=Enum.NormalId.Left,R=Enum.NormalId.Right,T=Enum.NormalId.Top,Bo=Enum.NormalId.Bottom,F=Enum.NormalId.Front,Ba=Enum.NormalId.Back}
+						if fm[face] then sprays[#sprays+1] = {face=fm[face], text=text or "", colorHex=col} end
+					end
+				end
+				blocks[#blocks+1] = {
+					size=size, centerPos=cp, color=hexToCol(colorHex),
+					material=SYM[sym] or Enum.Material.SmoothPlastic,
+					canCollide=cc, needsResize=not(is4 and onGrid), sprays=sprays
+				}
+			end
+		end
+	end
+	return blocks
+end
+
+local function fastResize(brick, targetSize, shapeEv, hrpPos)
+	if not brick or not shapeEv then return end
+	local rR = math.floor(targetSize.X - 1)
+	local tR = math.floor(targetSize.Y - 1)
+	local bR = math.floor(targetSize.Z - 1)
+	local maxR = math.max(rR, tR, bR)
+	for i = 1, maxR do
+		local cur = newestBrick() or brick
+		if i <= rR then shapeEv:FireServer(cur, Enum.NormalId.Right, hrpPos, "increase") end
+		if i <= tR then shapeEv:FireServer(cur, Enum.NormalId.Top, hrpPos, "increase") end
+		if i <= bR then shapeEv:FireServer(cur, Enum.NormalId.Back, hrpPos, "increase") end
+		task.wait(BUILD_CFG.ResizeSide)
+	end
+end
+
+local function fastPlace(bd, buildEv, shapeEv, paintEv, hrp)
+	local tpPos = bd.needsResize and cornerPos(bd.centerPos, bd.size) or bd.centerPos
+	local buildPos = tpPos + Vector3.new(0, BUILD_CFG.HeightOffset, 0)
+	hrp.CFrame = CFrame.new(buildPos)
+	hrp.AssemblyLinearVelocity = Vector3.zero
+	hrp.AssemblyAngularVelocity = Vector3.zero
+
+	local placePos = bd.needsResize and cornerPos(bd.centerPos, bd.size) or bd.centerPos
+	local mode = bd.needsResize and (bd.canCollide and "detailed" or "detailed nocollide")
+		or (bd.canCollide and "normal" or "nocollide")
+
+	local before = brickCount()
+	buildEv:FireServer(WS.Terrain, Enum.NormalId.Top, placePos, mode)
+	local retry = bd.canCollide and BUILD_CFG.PlaceRetry or BUILD_CFG.PlaceRetryNC
+	local tries = 0
+	while brickCount() == before and tries < BUILD_CFG.MaxAttempts do
+		task.wait(retry)
+		if brickCount() > before then break end
+		tries = tries + 1
+		buildEv:FireServer(WS.Terrain, Enum.NormalId.Top, placePos, mode)
+	end
+
+	if brickCount() == before then return false end
+	local newB = newestBrick()
+	if not newB then return false end
+
+	task.spawn(function()
+		pcall(function()
+			paintEv:FireServer(newB, Enum.NormalId.Left, hrp.Position, "both 🤝", bd.color, MAT_PAINT[bd.material] or "smooth", "")
+		end)
+		if bd.sprays and #bd.sprays > 0 then
+			for _, sp in ipairs(bd.sprays) do
+				pcall(function()
+					paintEv:FireServer(newB, sp.face, hrp.Position, "both 🤝", hexToCol(sp.colorHex), "spray", sp.text)
+				end)
+			end
+		end
+		if not bd.canCollide then
+			pcall(function()
+				paintEv:FireServer(newB, Enum.NormalId.Back, hrp.Position, "material", bd.color, "collide", "")
+			end)
+		end
+	end)
+
+	if bd.needsResize and bd.size ~= Vector3.new(1,1,1) then
+		task.spawn(function()
+			fastResize(newB, bd.size, shapeEv, hrp.Position)
+		end)
+	end
+
+	return true
+end
+
+local buildNoclipConn
+local function enableBuildNoclip()
+	if buildNoclipConn then buildNoclipConn:Disconnect() end
+	buildNoclipConn = RS.Stepped:Connect(function()
+		if char then
+			for _, p in ipairs(char:GetChildren()) do
+				if p:IsA("BasePart") then p.CanCollide = false end
+			end
+		end
+	end)
+end
+
+local function disableBuildNoclip()
+	if buildNoclipConn then buildNoclipConn:Disconnect(); buildNoclipConn = nil end
+end
+
+local buildRunning = false
+local stopRequested = false
+
+local function autoBuild(buildStr)
+	if buildRunning then say("already building") return end
+	local blocks = parseBuild(buildStr)
+	if #blocks == 0 then say("no blocks parsed") return end
+
+	local buildEv = fastRemote("Build")
+	local shapeEv = fastRemote("Shape")
+	local paintEv = fastRemote("Paint")
+	if not buildEv then say("no Build tool") return end
+	if not shapeEv then say("no Shape tool") return end
+	if not paintEv then say("no Paint tool") return end
+
+	buildRunning = true
+	stopRequested = false
+	enableBuildNoclip()
+
+	local total = #blocks
+	local done = {}
+	local placed = 0
+	local fails = 0
+
+	while placed < total and not stopRequested do
+		local hrp = char and char:FindFirstChild("HumanoidRootPart")
+		if not hrp then break end
+		local best, bd = nil, math.huge
+		for i, b in ipairs(blocks) do
+			if not done[i] then
+				local d = (hrp.Position - b.centerPos).Magnitude
+				if d < bd then best, bd = i, d end
+			end
+		end
+		if not best then break end
+
+		local ok = fastPlace(blocks[best], buildEv, shapeEv, paintEv, hrp)
+		if ok then
+			done[best] = true
+			placed = placed + 1
+		else
+			fails = fails + 1
+			if fails >= 3 then done[best] = true; placed = placed + 1; fails = 0 end
+		end
+	end
+
+	disableBuildNoclip()
+	buildRunning = false
+	return placed
+end
+
+local function captureBuild(mode)
+	local folder = WS:FindFirstChild("Bricks")
+	if not folder then return nil end
+	local parts = {}
+	for _, pf in ipairs(folder:GetChildren()) do
+		if mode == "all" or pf.Name == plr.Name then
+			for _, b in ipairs(pf:GetChildren()) do
+				if b:IsA("BasePart") and b.Name == "Brick" then parts[#parts+1] = b end
+			end
+		end
+	end
+	if #parts == 0 then return nil end
+	table.sort(parts, function(a, b)
+		if a.Position.X ~= b.Position.X then return a.Position.X < b.Position.X end
+		if a.Position.Y ~= b.Position.Y then return a.Position.Y < b.Position.Y end
+		return a.Position.Z < b.Position.Z
+	end)
+	local str = ""
+	for _, b in ipairs(parts) do
+		str = str .. "|" .. colToHex(b.Color) .. matToSym(b.Material)
+		if not b.CanCollide then str = str .. "^" end
+		str = str .. string.format("%d,%d,%d.", b.Size.X, b.Size.Y, b.Size.Z)
+		str = str .. string.format("%.1f,%.1f,%.1f.", b.Position.X, b.Position.Y, b.Position.Z)
+	end
+	return str
+end
+
+local buildScroll = Instance.new("ScrollingFrame")
+buildScroll.Size = UDim2.new(1, 0, 1, 0)
+buildScroll.BackgroundTransparency = 1
+buildScroll.BorderSizePixel = 0
+buildScroll.ScrollBarThickness = 2
+reg(buildScroll, "ScrollBarImageColor3", "acc")
+buildScroll.CanvasSize = UDim2.new(0, 0, 0, 0)
+buildScroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
+buildScroll.Parent = pBuild
+
+local bStack = Instance.new("UIListLayout")
+bStack.Padding = UDim.new(0, 6)
+bStack.SortOrder = Enum.SortOrder.LayoutOrder
+bStack.Parent = buildScroll
+
+local function mkBtn(parent, label, w, colorKey, onClick)
+	local b = Instance.new("TextButton")
+	b.Size = UDim2.fromOffset(w, 24)
+	b.BorderSizePixel = 0
+	b.AutoButtonColor = false
+	b.Font = Enum.Font.GothamMedium
+	b.TextSize = 10
+	b.Text = label
+	b.Parent = parent
+	corner(b, 5)
+
+	if colorKey == "acc" then
+		reg(b, "BackgroundColor3", "acc")
+		reg(b, "TextColor3", "bg")
+		border(b, "acc", 1)
+	elseif colorKey == "bad" then
+		reg(b, "BackgroundColor3", "bad")
+		b.TextColor3 = Color3.fromRGB(255, 255, 255)
+		border(b, "bad", 1)
+	else
+		reg(b, "BackgroundColor3", "card")
+		reg(b, "TextColor3", "txt")
+		border(b, "line", 1)
+	end
+
+	b.MouseEnter:Connect(function()
+		local base = colorKey == "acc" and C.acc or colorKey == "bad" and C.bad or C.cardHi
+		tw:Create(b, TweenInfo.new(0.1), { BackgroundColor3 = base }):Play()
+	end)
+	b.MouseLeave:Connect(function()
+		local base = colorKey == "acc" and C.acc or colorKey == "bad" and C.bad or C.card
+		tw:Create(b, TweenInfo.new(0.1), { BackgroundColor3 = base }):Play()
+	end)
+	b.MouseButton1Click:Connect(onClick)
+	return b
+end
+
+local fileHead = Instance.new("Frame")
+fileHead.Size = UDim2.new(1, 0, 0, 20)
+fileHead.BackgroundTransparency = 1
+fileHead.LayoutOrder = 1
+fileHead.Parent = buildScroll
+
+local fileLbl = Instance.new("TextLabel")
+fileLbl.Text = "Build Files"
+fileLbl.Size = UDim2.new(1, -60, 1, 0)
+fileLbl.BackgroundTransparency = 1
+fileLbl.Font = Enum.Font.GothamMedium
+fileLbl.TextSize = 11
+reg(fileLbl, "TextColor3", "txt")
+fileLbl.TextXAlignment = Enum.TextXAlignment.Left
+fileLbl.Parent = fileHead
+
+local reloadBtn = Instance.new("TextButton")
+reloadBtn.Size = UDim2.fromOffset(56, 18)
+reloadBtn.Position = UDim2.new(1, -56, 0.5, -9)
+reloadBtn.AnchorPoint = Vector2.new(0, 0.5)
+reg(reloadBtn, "BackgroundColor3", "card")
+reloadBtn.BorderSizePixel = 0
+reloadBtn.AutoButtonColor = false
+reloadBtn.Font = Enum.Font.GothamMedium
+reloadBtn.TextSize = 9
+reloadBtn.Text = "reload"
+reg(reloadBtn, "TextColor3", "acc")
+reloadBtn.Parent = fileHead
+corner(reloadBtn, 4)
+border(reloadBtn, "line", 1)
+
+local fileList = Instance.new("Frame")
+fileList.Size = UDim2.new(1, 0, 0, 110)
+reg(fileList, "BackgroundColor3", "card")
+fileList.BorderSizePixel = 0
+fileList.LayoutOrder = 2
+fileList.Parent = buildScroll
+corner(fileList, 6)
+border(fileList, "line", 1)
+
+local fileScroll = Instance.new("ScrollingFrame")
+fileScroll.Size = UDim2.new(1, -8, 1, -8)
+fileScroll.Position = UDim2.new(0, 4, 0, 4)
+fileScroll.BackgroundTransparency = 1
+fileScroll.BorderSizePixel = 0
+fileScroll.ScrollBarThickness = 2
+reg(fileScroll, "ScrollBarImageColor3", "acc")
+fileScroll.CanvasSize = UDim2.new(0, 0, 0, 0)
+fileScroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
+fileScroll.Parent = fileList
+
+local fileStack = Instance.new("UIListLayout")
+fileStack.Padding = UDim.new(0, 4)
+fileStack.SortOrder = Enum.SortOrder.LayoutOrder
+fileStack.Parent = fileScroll
+
+local selectedFile, selectedData = nil, nil
+
+local function clearFileRows()
+	for _, c in ipairs(fileScroll:GetChildren()) do
+		if c:IsA("TextButton") or c:IsA("TextLabel") then c:Destroy() end
+	end
+end
+
+local function displayNameFor(base)
+	base = base:gsub("%.txt$", "")
+	local lead, suffix = base:match("^(%d+)EcBuild(.*)$")
+	if lead then
+		local num = tonumber(lead)
+		suffix = suffix:gsub("^[%s_%-]+", ""):gsub("[%s_%-]+$", "")
+		if suffix == "" then return "#" .. lead, num end
+		return "#" .. lead .. "  ·  " .. suffix, num
+	end
+	local d = base:gsub("EcBuild", " "):gsub("_", " ")
+	d = d:gsub("^%s+", ""):gsub("%s+$", ""):gsub("%s+", " ")
+	if d == "" then d = base end
+	return d, nil
+end
+
+local function refreshFiles()
+	clearFileRows()
+	selectedFile, selectedData = nil, nil
+	ensureIndex()
+	local index = readIndex()
+	local found = {}
+	local seen = {}
+	for _, name in ipairs(index) do
+		if not seen[name] then
+			seen[name] = true
+			local data = readFileSafe(name)
+			if data then
+				local display, num = displayNameFor(name)
+				found[#found+1] = { full = name, short = name, display = display, data = data, num = num }
+			end
+		end
+	end
+	table.sort(found, function(a, b)
+		if a.num and b.num then return a.num < b.num end
+		if a.num and not b.num then return true end
+		if b.num and not a.num then return false end
+		return a.display:lower() < b.display:lower()
+	end)
+	if #found == 0 then
+		local empty = Instance.new("TextLabel")
+		empty.Text = "  no saved builds in index"
+		empty.Size = UDim2.new(1, 0, 0, 20)
+		empty.BackgroundTransparency = 1
+		empty.Font = Enum.Font.Gotham
+		empty.TextSize = 10
+		reg(empty, "TextColor3", "dim")
+		empty.TextXAlignment = Enum.TextXAlignment.Left
+		empty.LayoutOrder = 1
+		empty.Parent = fileScroll
+		return
+	end
+	for i, f in ipairs(found) do
+		local b = Instance.new("TextButton")
+		b.Size = UDim2.new(1, -4, 0, 22)
+		b.BackgroundColor3 = C.card
+		b.BorderSizePixel = 0
+		b.AutoButtonColor = false
+		b.Font = Enum.Font.Gotham
+		b.TextSize = 10
+		b.Text = "  " .. f.display
+		reg(b, "TextColor3", "txt")
+		b.TextXAlignment = Enum.TextXAlignment.Left
+		b.LayoutOrder = i
+		b.Parent = fileScroll
+		corner(b, 4)
+		border(b, "line", 1)
+
+		b.MouseEnter:Connect(function()
+			if selectedFile ~= f.full then
+				tw:Create(b, TweenInfo.new(0.1), { BackgroundColor3 = C.cardHi }):Play()
+			end
+		end)
+		b.MouseLeave:Connect(function()
+			if selectedFile ~= f.full then
+				tw:Create(b, TweenInfo.new(0.1), { BackgroundColor3 = C.card }):Play()
+			end
+		end)
+		b.MouseButton1Click:Connect(function()
+			selectedFile = f.full
+			selectedData = f.data
+			say("selected: " .. f.display)
+			for _, ch in ipairs(fileScroll:GetChildren()) do
+				if ch:IsA("TextButton") then
+					if ch == b then
+						ch.TextColor3 = C.acc
+						ch.BackgroundColor3 = C.cardHi
+					else
+						ch.TextColor3 = C.txt
+						ch.BackgroundColor3 = C.card
+					end
+				end
+			end
+		end)
+	end
+end
+
+reloadBtn.MouseButton1Click:Connect(function() refreshFiles(); say("reloaded files") end)
+
+local fileActions = Instance.new("Frame")
+fileActions.Size = UDim2.new(1, 0, 0, 26)
+fileActions.BackgroundTransparency = 1
+fileActions.LayoutOrder = 3
+fileActions.Parent = buildScroll
+
+local fileRow = Instance.new("UIListLayout")
+fileRow.FillDirection = Enum.FillDirection.Horizontal
+fileRow.Padding = UDim.new(0, 6)
+fileRow.SortOrder = Enum.SortOrder.LayoutOrder
+fileRow.Parent = fileActions
+
+mkBtn(fileActions, "build", 70, "acc", function()
+	if not selectedData then say("select a file first") return end
+	say("building...")
+	task.spawn(function()
+		local ok = autoBuild(selectedData)
+		if ok then say("built " .. tostring(ok)) else say("build failed") end
+	end)
+end).LayoutOrder = 1
+
+mkBtn(fileActions, "copy", 60, nil, function()
+	if not selectedData then say("select a file first") return end
+	if clip(selectedData) then say("copied") else say("clipboard broke") end
+end).LayoutOrder = 2
+
+mkBtn(fileActions, "delete", 60, nil, function()
+	if not selectedFile then say("select a file first") return end
+	pcall(function() if delfile then delfile(selectedFile) end end)
+	removeFromIndex(selectedFile)
+	refreshFiles()
+	say("deleted")
+end).LayoutOrder = 3
+
+local pasteLbl = Instance.new("TextLabel")
+pasteLbl.Text = "Paste Build String"
+pasteLbl.Size = UDim2.new(1, 0, 0, 16)
+pasteLbl.BackgroundTransparency = 1
+pasteLbl.Font = Enum.Font.GothamMedium
+pasteLbl.TextSize = 11
+reg(pasteLbl, "TextColor3", "txt")
+pasteLbl.TextXAlignment = Enum.TextXAlignment.Left
+pasteLbl.LayoutOrder = 4
+pasteLbl.Parent = buildScroll
+
+local pasteBox = Instance.new("TextBox")
+pasteBox.Size = UDim2.new(1, 0, 0, 64)
+reg(pasteBox, "BackgroundColor3", "card")
+pasteBox.BorderSizePixel = 0
+pasteBox.Font = Enum.Font.Code
+pasteBox.TextSize = 9
+reg(pasteBox, "TextColor3", "txt")
+pasteBox.Text = ""
+pasteBox.PlaceholderText = "paste your build string here..."
+reg(pasteBox, "PlaceholderColor3", "dim")
+pasteBox.TextWrapped = true
+pasteBox.TextXAlignment = Enum.TextXAlignment.Left
+pasteBox.TextYAlignment = Enum.TextYAlignment.Top
+pasteBox.ClearTextOnFocus = false
+pasteBox.MultiLine = true
+pasteBox.LayoutOrder = 5
+pasteBox.Parent = buildScroll
+corner(pasteBox, 6)
+border(pasteBox, "line", 1)
+
+local pasteActions = Instance.new("Frame")
+pasteActions.Size = UDim2.new(1, 0, 0, 26)
+pasteActions.BackgroundTransparency = 1
+pasteActions.LayoutOrder = 6
+pasteActions.Parent = buildScroll
+
+local pRow = Instance.new("UIListLayout")
+pRow.FillDirection = Enum.FillDirection.Horizontal
+pRow.Padding = UDim.new(0, 6)
+pRow.SortOrder = Enum.SortOrder.LayoutOrder
+pRow.Parent = pasteActions
+
+mkBtn(pasteActions, "build pasted", 100, "acc", function()
+	if pasteBox.Text == "" then say("nothing pasted") return end
+	say("building pasted...")
+	task.spawn(function()
+		local ok = autoBuild(pasteBox.Text)
+		if ok then say("built " .. tostring(ok)) else say("build failed") end
+	end)
+end).LayoutOrder = 1
+
+mkBtn(pasteActions, "save pasted", 100, nil, function()
+	if pasteBox.Text == "" then say("nothing pasted") return end
+	local name = nextBuildName()
+	local ok = writeFileSafe(name, pasteBox.Text)
+	if not ok then say("write failed") return end
+	local check = readFileSafe(name)
+	if not check then say("write verify failed: " .. name) return end
+	addToIndex(name)
+	local idx = readIndex()
+	say("saved " .. name .. " (index: " .. #idx .. ")")
+	refreshFiles()
+end).LayoutOrder = 2
+
+mkBtn(pasteActions, "copy", 60, nil, function()
+	if clip(pasteBox.Text) then say("copied") else say("clipboard broke") end
+end).LayoutOrder = 3
+
+mkBtn(pasteActions, "clear", 60, nil, function()
+	pasteBox.Text = ""
+	say("cleared")
+end).LayoutOrder = 4
+
+local capLbl = Instance.new("TextLabel")
+capLbl.Text = "Capture Existing Bricks"
+capLbl.Size = UDim2.new(1, 0, 0, 16)
+capLbl.BackgroundTransparency = 1
+capLbl.Font = Enum.Font.GothamMedium
+capLbl.TextSize = 11
+reg(capLbl, "TextColor3", "txt")
+capLbl.TextXAlignment = Enum.TextXAlignment.Left
+capLbl.LayoutOrder = 7
+capLbl.Parent = buildScroll
+
+local capRow1 = Instance.new("Frame")
+capRow1.Size = UDim2.new(1, 0, 0, 26)
+capRow1.BackgroundTransparency = 1
+capRow1.LayoutOrder = 8
+capRow1.Parent = buildScroll
+
+local capL1 = Instance.new("UIListLayout")
+capL1.FillDirection = Enum.FillDirection.Horizontal
+capL1.Padding = UDim.new(0, 6)
+capL1.SortOrder = Enum.SortOrder.LayoutOrder
+capL1.Parent = capRow1
+
+mkBtn(capRow1, "you copy", 90, nil, function()
+	local s = captureBuild("you")
+	if not s then say("nothing to capture") return end
+	if clip(s) then say("copied my bricks") else say("clipboard broke") end
+end).LayoutOrder = 1
+
+mkBtn(capRow1, "you save", 90, nil, function()
+	local s = captureBuild("you")
+	if not s then say("nothing to capture") return end
+	local name = nextBuildName()
+	local ok = writeFileSafe(name, s)
+	if not ok then say("write failed") return end
+	local check = readFileSafe(name)
+	if not check then say("write verify failed: " .. name) return end
+	addToIndex(name)
+	local idx = readIndex()
+	say("saved " .. name .. " (index: " .. #idx .. ")")
+	refreshFiles()
+end).LayoutOrder = 2
+
+mkBtn(capRow1, "reindex", 70, nil, function()
+	local files = listFilesSafe()
+	local list, seen = {}, {}
+	for _, p in ipairs(files) do
+		local short = p:match("([^/\\]+)$") or p
+		if short:match("EcBuild") and not seen[short] then
+			seen[short] = true
+			list[#list+1] = short
+		end
+	end
+	writeIndex(list)
+	refreshFiles()
+	say("reindexed " .. #list .. " files")
+end).LayoutOrder = 3
+
+local capRow2 = Instance.new("Frame")
+capRow2.Size = UDim2.new(1, 0, 0, 26)
+capRow2.BackgroundTransparency = 1
+capRow2.LayoutOrder = 9
+capRow2.Parent = buildScroll
+
+local capL2 = Instance.new("UIListLayout")
+capL2.FillDirection = Enum.FillDirection.Horizontal
+capL2.Padding = UDim.new(0, 6)
+capL2.SortOrder = Enum.SortOrder.LayoutOrder
+capL2.Parent = capRow2
+
+mkBtn(capRow2, "all copy", 90, nil, function()
+	local s = captureBuild("all")
+	if not s then say("nothing to capture") return end
+	if clip(s) then say("copied all bricks") else say("clipboard broke") end
+end).LayoutOrder = 1
+
+mkBtn(capRow2, "all save", 90, nil, function()
+	local s = captureBuild("all")
+	if not s then say("nothing to capture") return end
+	local name = nextBuildName()
+	local ok = writeFileSafe(name, s)
+	if not ok then say("write failed") return end
+	local check = readFileSafe(name)
+	if not check then say("write verify failed: " .. name) return end
+	addToIndex(name)
+	local idx = readIndex()
+	say("saved " .. name .. " (index: " .. #idx .. ")")
+	refreshFiles()
+end).LayoutOrder = 2
+
+local stopRow = Instance.new("Frame")
+stopRow.Size = UDim2.new(1, 0, 0, 28)
+stopRow.BackgroundTransparency = 1
+stopRow.LayoutOrder = 10
+stopRow.Parent = buildScroll
+
+mkBtn(stopRow, "stop build", 200, "bad", function()
+	if buildRunning then
+		stopRequested = true
+		say("stopping...")
+	else
+		say("nothing running")
+	end
+end)
+
+local pT = makePage("themes")
+
+local thScroll = Instance.new("ScrollingFrame")
+thScroll.Size = UDim2.new(1, 0, 1, 0)
+thScroll.BackgroundTransparency = 1
+thScroll.BorderSizePixel = 0
+thScroll.ScrollBarThickness = 2
+reg(thScroll, "ScrollBarImageColor3", "acc")
+thScroll.CanvasSize = UDim2.new(0, 0, 0, 0)
+thScroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
+thScroll.Parent = pT
+
+local grid = Instance.new("UIGridLayout")
+grid.CellSize = UDim2.new(0.5, -6, 0, 52)
+grid.CellPadding = UDim2.new(0, 8, 0, 8)
+grid.SortOrder = Enum.SortOrder.LayoutOrder
+grid.Parent = thScroll
+
+local themeCards = {}
+for i, th in ipairs(themes) do
+	local tile = Instance.new("TextButton")
+	tile.BackgroundColor3 = C.card
+	tile.BorderSizePixel = 0
+	tile.AutoButtonColor = false
+	tile.Text = ""
+	tile.LayoutOrder = i
+	tile.Parent = thScroll
+	corner(tile, 8)
+	border(tile, "line", 1)
+	track[#track+1] = { tile, "BackgroundColor3", "card" }
+
+	local sw = Instance.new("Frame")
+	sw.Size = UDim2.fromOffset(32, 32)
+	sw.Position = UDim2.new(0, 8, 0.5, -16)
+	sw.BackgroundColor3 = th.bg
+	sw.BorderSizePixel = 0
+	sw.Parent = tile
+	corner(sw, 6)
+	local swLine = Instance.new("UIStroke")
+	swLine.Color = th.line
+	swLine.Thickness = 1
+	swLine.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	swLine.Parent = sw
+
+	local c1 = Instance.new("Frame")
+	c1.Size = UDim2.fromOffset(10, 10)
+	c1.Position = UDim2.new(0, 5, 0, 5)
+	c1.BackgroundColor3 = th.acc
+	c1.BorderSizePixel = 0
+	c1.Parent = sw
+	corner(c1, 3)
+
+	local c2 = Instance.new("Frame")
+	c2.Size = UDim2.fromOffset(10, 10)
+	c2.Position = UDim2.new(0, 17, 0, 17)
+	c2.BackgroundColor3 = th.card
+	c2.BorderSizePixel = 0
+	c2.Parent = sw
+	corner(c2, 3)
+
+	local tn = Instance.new("TextLabel")
+	tn.Text = th.nm
+	tn.Size = UDim2.new(1, -54, 0, 16)
+	tn.Position = UDim2.new(0, 46, 0, 11)
+	tn.BackgroundTransparency = 1
+	tn.Font = Enum.Font.GothamMedium
+	tn.TextSize = 10
+	reg(tn, "TextColor3", "txt")
+	tn.TextXAlignment = Enum.TextXAlignment.Left
+	tn.Parent = tile
+
+	local check = Instance.new("Frame")
+	check.Size = UDim2.fromOffset(12, 12)
+	check.Position = UDim2.new(1, -18, 0.5, -6)
+	check.BorderSizePixel = 0
+	reg(check, "BackgroundColor3", "acc")
+	check.Visible = (i == ti)
+	check.Parent = tile
+	corner(check, 6)
+
+	local cd = Instance.new("Frame")
+	cd.Size = UDim2.fromOffset(4, 4)
+	cd.Position = UDim2.new(0.5, -2, 0.5, -2)
+	cd.BorderSizePixel = 0
+	reg(cd, "BackgroundColor3", "bg")
+	cd.Parent = check
+	corner(cd, 2)
+
+	themeCards[i] = { tile = tile, check = check }
+	tile.MouseEnter:Connect(function() tw:Create(tile, TweenInfo.new(0.12), { BackgroundColor3 = C.cardHi }):Play() end)
+	tile.MouseLeave:Connect(function() tw:Create(tile, TweenInfo.new(0.12), { BackgroundColor3 = C.card }):Play() end)
+	tile.MouseButton1Click:Connect(function() swap(i) end)
+end
+
+makeTab("scriptz", "Scriptz")
+makeTab("spy",     "Spy Chat")
+makeTab("grief",   "Grief")
+makeTab("build",   "Auto Build")
+makeTab("themes",  "Themes")
+
+active = "scriptz"
+tabBtns.scriptz.pill.Visible = true
+tabBtns.scriptz.btn.BackgroundColor3 = C.card
+tabBtns.scriptz.btn.TextColor3 = C.txt
+pages.scriptz.Visible = true
+
+swap = function(n)
+	ti = n
+	C = themes[ti]
+	for _, t in ipairs(track) do
+		local o, p, k = t[1], t[2], t[3]
+		if o and o.Parent then o[p] = C[k] end
+	end
+	for k, t in pairs(tabBtns) do
+		local on = k == active
+		t.btn.BackgroundColor3 = on and C.card or C.panel
+		t.btn.TextColor3 = on and C.txt or C.dim
+	end
+	for i, tc in ipairs(themeCards) do
+		tc.check.Visible = (i == ti)
+		tc.tile.BackgroundColor3 = C.card
+	end
+	for _, sw in ipairs(switches) do sw.refresh(false) end
+	say(C.nm .. " theme")
+end
+
+minBtn.MouseButton1Click:Connect(function() toggle(false) end)
+
+xBtn.MouseButton1Click:Connect(function()
+	for k, v in pairs(gCfg) do if type(v) == "boolean" then gCfg[k] = false end end
+	Config.SpyChat = false
+	stopRequested = true
+	if char then
+		local hum = char:FindFirstChildOfClass("Humanoid")
+		if hum then hum.PlatformStand = false end
+		local hrp = char:FindFirstChild("HumanoidRootPart")
+		if hrp then
+			for _, c in ipairs(hrp:GetChildren()) do
+				if c:IsA("BodyVelocity") or c:IsA("BodyGyro") then c:Destroy() end
+			end
+		end
+	end
+	for name in pairs(TOOL_NEEDS) do
+		local equipped = char and char:FindFirstChild(name)
+		if equipped then
+			restoreHandle(equipped)
+			if plr:FindFirstChild("Backpack") then equipped.Parent = plr.Backpack end
+		end
+	end
+	disableBuildNoclip()
+	for _, sw in ipairs(switches) do sw.setState(false) end
+
+	minBtn.Visible = false
+	xBtn.Visible = false
+	task.wait(0.05)
+	local t = tw:Create(hub, TweenInfo.new(0.15), {
+		Size = UDim2.fromOffset(420, 300),
+		BackgroundTransparency = 1,
+	})
+	t:Play()
+	t.Completed:Connect(function() gui:Destroy() end)
+end)
+
+refreshFiles()
+
+end)
+
+if not setupOk then
+	warn("[EchoScriptz] setup error: " .. tostring(setupErr))
+	pcall(function()
+		local fallback = Instance.new("TextLabel")
+		fallback.Size = UDim2.new(0, 300, 0, 40)
+		fallback.Position = UDim2.new(0.5, -150, 0.5, -20)
+		fallback.BackgroundColor3 = Color3.fromRGB(30, 24, 18)
+		fallback.TextColor3 = Color3.fromRGB(235, 95, 95)
+		fallback.Font = Enum.Font.GothamBold
+		fallback.TextSize = 11
+		fallback.Text = "setup error: " .. tostring(setupErr):sub(1, 120)
+		fallback.TextWrapped = true
+		fallback.Parent = gui
+		fallback.ZIndex = 999
+		task.delay(8, function() pcall(function() fallback:Destroy() end) end)
+	end)
+end
