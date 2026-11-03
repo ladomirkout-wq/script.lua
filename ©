@@ -1,5 +1,5 @@
 local ICON = "rbxthumb://type=Asset&id=4525241698&w=420&h=420"
-local INVITE = "https://discord.gg/wyJj5Q3YN"
+local INVITE = "https://discord.gg/CNGv5Cbr3"
 
 local scripts = {
 	{ name = "Antis",       desc = "Antis script",              url = "https://raw.githubusercontent.com/ladomirkout-wq/script.lua/refs/heads/main/Antis%20lmao" },
